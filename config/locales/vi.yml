@@ -1,0 +1,15 @@
+vi:
+  hello: "Chào mừng đến với Social Image"
+  social-image: "Social Image"
+  team3:
+    minh: "Cao Văn Minh"
+    phuong: "Nguyễn Thế Phương"
+    email: "social.image@example.com"
+    phone: " (123) 456-7890"
+    address: "Trường đại học Bách Khoa Hà Nội"
+  log-in: "Đăng nhập"
+  sign-up: "Đăng ký"
+  sign-up-now: "Đăng ký ngay!"
+  pages:
+    home: "Trang chủ"
+    about: "Về chúng tôi"
