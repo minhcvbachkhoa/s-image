@@ -106,9 +106,11 @@ ul {
     margin-right: 50px;
     margin-top: 30px;
     padding: 10px;
+    width: 100%;
 
     img {
       float: left;
+      margin-right: 5px;
     }
 
     .description-field {
@@ -131,7 +133,7 @@ ul {
     }
 
     .actions {
-      padding-left: 550px;
+      padding-left: 750px;
     }
   }
 

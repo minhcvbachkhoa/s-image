@@ -25,6 +25,9 @@ vi:
   new-album: "Tạo album mới"
   liked: "Ảnh đã thích"
   recent-activity: "Hoạt động gần đây"
+  write-something: "Viết gì đó ..."
+  save-changes: "Lưu thay đổi"
+  you_sure: "Bạn muốn xóa?"
   signup:
     name: "Họ tên"
     email: "Email"
@@ -55,6 +58,12 @@ vi:
     is-private: "Nhóm bí mật"
     create-group: "Tạo nhóm"
     save-changes: "Lưu thay đổi"
+    joined: "Đã tham gia"
+    leave: "Rời khỏi nhóm"
+    add-member: "Thêm thành viên"
+    update-info: "Chỉnh sửa thông tin"
+    delete-group: "Xóa nhóm"
+    error: "Lỗi"
   images:
     images: "Ảnh"
     description: "Mô tả về ảnh"
