@@ -1,0 +1,336 @@
+$white: #fff;
+$steel-blue: #365899;
+$gray-medium-light: #eaeaea;
+$black1: rgba(0, 0, 0, .1);
+$black2: rgba(0, 0, 0, .6);
+$black3: rgba(0, 0, 0, .16);
+
+.row {
+  margin: 0;
+}
+
+.user-show {
+  margin-top: -7px;
+
+  .user-show-left {
+    padding-left: 0;
+
+    .user-info {
+      background-color: $white;
+      box-shadow: 0 2px 4px 0 $black3 !important;
+      margin-top: 10px;
+      padding: 10px;
+    }
+  }
+
+  .menu-group-actions {
+    background-color: $white;
+    box-shadow: 0 2px 4px 0 $black3 !important;
+    height: 45px;
+    margin-top: -25px;
+    padding-left: 220px;
+
+    span {
+      background-color: $white;
+      border-left: 1px solid $black3;
+      font-size: 14px;
+      font-weight: bold;
+      margin: 0;
+      padding: 15px;
+    }
+  }
+
+  .user-show-right {
+    padding: 10px;
+
+    .load-more-user-show-mages {
+      padding-bottom: 20px;
+      padding-top: 20px;
+      text-align: center;
+    }
+
+    .images {
+      padding: 10px;
+    }
+
+    h3 {
+      text-align: center;
+    }
+  }
+
+  .avatar-modal {
+    max-width: 400px;
+    text-align: center;
+
+    h4 {
+      text-align: center;
+    }
+
+    .user-avatar-edit {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+
+.password-modal {
+  h4 {
+    text-align: center;
+  }
+
+  .form-control {
+    margin-bottom: 10px;
+  }
+
+  .actions {
+    float: right;
+
+    .btn-password-save {
+      float: right;
+    }
+
+    .btn-password-cancel {
+      float: right;
+      margin-right: 10px;
+    }
+  }
+}
+
+.user-form-submit {
+  .user-avatar-btn-save {
+    float: right;
+  }
+
+  .user-avatar-btn-cancel {
+    float: right;
+    margin-right: 10px;
+  }
+}
+
+.user-image {
+  margin-bottom: 25px;
+  position: relative;
+
+  .follow-users-btn {
+    bottom: 10px;
+    position: absolute;
+    right: 10px;
+  }
+
+  .user-cover {
+    position: relative;
+
+    .img-user-cover {
+      cursor: pointer;
+      max-height: 300px;
+      width: 100%;
+    }
+
+    .user-cover-update-text {
+      background: linear-gradient(transparent, $black2 50%,
+        $black2 100%);
+      border: 1px solid $black1;
+      color: $white;
+      cursor: pointer;
+      display: none;
+      font-size: 20px;
+      font-weight: bold;
+      left: 40%;
+      padding-top: 5px;
+      position: absolute;
+      top: 45%;
+    }
+  }
+
+  .user-avatar {
+    background-color: $white;
+    border: 1px solid $black1;
+    bottom: -15px;
+    cursor: pointer;
+    left: 5px;
+    position: absolute;
+
+    .img-user-avatar {
+      height: 150px;
+      width: 150px;
+    }
+
+    .user-avatar-update-text {
+      background: linear-gradient(transparent, $black2 50%,
+        $black2 100%);
+      bottom: 15px;
+      color: $white;
+      display: none;
+      font-size: 14px;
+      font-weight: bold;
+      left: 20px;
+      position: absolute;
+    }
+  }
+
+  .user-full-name {
+    bottom: 10px;
+    color: $white;
+    font-size: 20px;
+    font-weight: 600;
+    left: 160px;
+    position: absolute;
+  }
+}
+
+.user-form-edit {
+  display: none;
+
+  .user-form-submit {
+    float: right;
+
+    .user-form-btn-save {
+      float: right;
+    }
+
+    .user-form-btn-cancel {
+      float: right;
+      margin-right: 10px;
+    }
+  }
+
+  .field {
+    margin-bottom: 5px;
+  }
+
+  .user-avatar {
+    margin-bottom: 5px;
+
+    .img-user-avatar-file-field {
+      border: 1px solid $black1;
+      display: inherit;
+      height: 200px;
+      margin-right: 10px;
+      width: 200px;
+    }
+
+    .avatar-file-field {
+      display: inherit;
+    }
+  }
+}
+
+
+.cover-modal {
+  h4 {
+    text-align: center;
+  }
+
+  .user-cover-edit {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .user-form-submit {
+    .user-cover-btn-save {
+      float: right;
+    }
+
+    .user-cover-btn-cancel {
+      float: right;
+      margin-right: 10px;
+    }
+  }
+}
+
+.user-infomation {
+  .user-edit-btn {
+    float: right;
+  }
+
+  .info {
+    margin-bottom: 10px;
+  }
+}
+
+.middle-follow-users {
+  background-color: $white !important;
+  padding: 10px !important;
+  z-index: 2;
+
+  .follow-users {
+    border-bottom: 1px solid $black1;
+    margin-bottom: 10px;
+
+    .follow-users-header {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.follow-users-header-content {
+  .follow-users-header-avatar {
+    border: 1px solid $black1;
+    display: block;
+    float: left;
+    height: 60px;
+    margin-right: 5px;
+    width: 60px;
+  }
+
+  .follow-users-header-info {
+    overflow: hidden;
+    position: relative;
+
+    .follow-users-btn {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    h6 {
+      color: $steel-blue;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 0 !important;
+      margin-top: 0 !important;
+    }
+
+    .follow-users-header-user {
+      width: 100%;
+    }
+
+    .comment-info-action {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.new-image {
+  background-color: $white;
+  padding: 10px;
+  width: 100%;
+
+  img {
+    float: left;
+    margin-right: 5px;
+  }
+
+  .description-field {
+    border-bottom: 1px solid $gray-medium-light;
+  }
+
+  textarea {
+    border: 0;
+    font-weight: normal;
+    height: 70px;
+    outline: none;
+    padding: 10px;
+    resize: none;
+    width: 90%;
+  }
+
+  .image-file {
+    margin-left: 50px;
+    margin-top: 20px;
+  }
+
+  .actions {
+    padding-left: 700px;
+  }
+}

@@ -28,6 +28,11 @@ vi:
   write-something: "Viết gì đó ..."
   save-changes: "Lưu thay đổi"
   you_sure: "Bạn muốn xóa?"
+  change-avatar: "Đổi ảnh đại diện"
+  change-cover: "Đổi ảnh bìa"
+  no_content: "Không có hoạt động"
+  follow: "Theo dõi"
+  unfollow: "Bỏ theo dõi"
   signup:
     name: "Họ tên"
     email: "Email"
@@ -67,6 +72,21 @@ vi:
   images:
     images: "Ảnh"
     description: "Mô tả về ảnh"
+  users:
+    email: "Email"
+    password: "Mật khẩu"
+    name: "Họ tên"
+    change-information: "Thay đổi thông tin"
+    current-password: "Mật khẩu hiện tại"
+    password-confirm: "Xác nhận mật khẩu"
+    updated: "Thay đổi thành công"
+    not-found: "Không tìm thấy người dùng"
+    error-update: "Lỗi cập nhật"
+    delete: "Xóa tài khoản"
+    user-deleted: "Đã xóa tài khoản"
+    group-joined: "Nhóm đã tham gia"
+    list-albums: "Album ảnh"
+    images: "Ảnh"
   error: "lỗi"
   activerecord:
     errors:
@@ -78,9 +98,11 @@ vi:
               invalid: "Email không hợp lệ"
             password:
               blank: "Mật khẩu không thể để trống"
-              too_short: "Mật khảu quá ngắn. Mật khẩu tối thiểu 6 kí tự"
+              too_short: "Mật khẩu quá ngắn. Mật khẩu tối thiểu 6 kí tự"
             name:
               blank: "Họ tên không thể để trống"
+            password_confirmation:
+              confirmation: "Chưa nhập mật khẩu xác nhận"
         group:
           attributes:
             name:

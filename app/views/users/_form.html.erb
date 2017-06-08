@@ -1,0 +1,32 @@
+<div class="modal-dialog password-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">
+        &times;
+      </button>
+      <h4 class="modal-title"><%= t "users.change-information" %></h4>
+    </div>
+    <div class="modal-body">
+      <%= form_for user, remote: true do |f| %>
+        <div class="user-form-errors">
+          <%= render "shared/error_messages", object: user %>
+        </div>
+
+        <%= f.label t("users.email") %>
+        <label class="field form-control" readonly>
+          <%= user.email %>
+        </label>
+        <%= f.label :name, t("users.name") %>
+        <%= f.text_field :name, class: "form-control" %>
+        <%= f.label :password, t("users.password") %>
+        <%= f.password_field :password, class: "form-control" %>
+        <%= f.label :password_confirmation, t("users.password-confirm") %>
+        <%= f.password_field :password_confirmation, class: "form-control" %>
+        <div class="actions">
+          <%= f.submit t("save-changes"), class: "btn btn-primary" %>
+        </div>
+        <div class="clearfix"></div>
+      <% end %>
+    </div>
+  </div>
+</div>

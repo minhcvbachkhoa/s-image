@@ -24,4 +24,12 @@ class User < ApplicationRecord
   def is_admin_group? group
     group.admins.include? self
   end
+
+  def is_admin?
+    self.admin
+  end
+
+  def current_user? user
+    self == user
+  end
 end

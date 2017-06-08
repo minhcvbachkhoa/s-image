@@ -1,2 +1,7 @@
 objs: ["user", "group"]
 attrs: ["avatar", "cover"]
+load_more_user_size: 4
+load_more_image_size: 4
+load_more_comment_size: 2
+load_more_reply_comment_size: 2
+length_more_user: 4
