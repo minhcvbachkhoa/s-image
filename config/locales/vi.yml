@@ -17,10 +17,11 @@ vi:
   search: "Tìm kiếm"
   members: "Thành viên"
   albums: "Albums"
-  groups: "Nhóm đã tham gia"
+  group-joined: "Nhóm đã tham gia"
   profile: "Trang cá nhân"
   settings: "Chỉnh sửa trang cá nhân"
   new-group: "Tạo nhóm mới"
+  edit-group: "Sửa thông tin nhóm"
   new-album: "Tạo album mới"
   liked: "Ảnh đã thích"
   recent-activity: "Hoạt động gần đây"
@@ -40,3 +41,38 @@ vi:
   pages:
     home: "Trang chủ"
     about: "Về chúng tôi"
+  groups:
+    group-not-found: "Không tìm thấy nhóm"
+    group-created: "Tạo nhóm thành công"
+    group-updated: "Nhóm đã được cập nhật"
+    group-deleted: "Xóa nhóm thành công"
+    not-admin-group: "Bạn không phải là admin của group"
+    name-group: "Đặt tên nhóm"
+    set-policy: "Đặt quyền riêng tư"
+    public: "Công khai"
+    private: "Bí mật"
+    is-public: "Nhóm công khai"
+    is-private: "Nhóm bí mật"
+    create-group: "Tạo nhóm"
+    save-changes: "Lưu thay đổi"
+  images:
+    images: "Ảnh"
+    description: "Mô tả về ảnh"
+  error: "lỗi"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "Email không thể để trống"
+              invalid: "Email không hợp lệ"
+            password:
+              blank: "Mật khẩu không thể để trống"
+              too_short: "Mật khảu quá ngắn. Mật khẩu tối thiểu 6 kí tự"
+            name:
+              blank: "Họ tên không thể để trống"
+        group:
+          attributes:
+            name:
+              blank: "Tên nhóm không thể để trống"

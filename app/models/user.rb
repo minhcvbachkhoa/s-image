@@ -4,7 +4,8 @@ class User < ApplicationRecord
 
   has_many :albums, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :groups
+  has_many :group_users, dependent: :destroy
+  has_many :groups, through: :group_users
   has_many :images, as: :imageable, dependent: :destroy
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :active_relationships, class_name: Relationship.name,
@@ -19,4 +20,8 @@ class User < ApplicationRecord
   validates :password, presence: true,
     length: {within: Devise.password_length}, allow_nil: true
   validates :name, presence: true, length: {maximum: 50}
+
+  def is_admin_group? group
+    group.admins.include? self
+  end
 end
