@@ -1,0 +1,4 @@
+<% if @group.errors.any? %>
+  $('.group-form-errors')
+    .html('<%= j render "shared/error_messages", object: @group %>');
+<% end %>

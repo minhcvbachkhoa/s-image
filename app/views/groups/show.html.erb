@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="col-md-4 show-group">
+    <div class="avatar-small">
+      <%= link_to image_tag("profile.jpg"), group_path(@group) %>
+      <%= link_to @group.name, group_path(@group) %>
+    </div>
+    <h3>
+      <% if @group.policy_is_public %>
+        <i class="fa fa-globe" aria-hidden="true"></i>
+        <%= t("groups.is-public") %>
+      <% else %>
+        <i class="fa fa-lock" aria-hidden="true"></i>
+        <%= t("groups.is-private") %>
+      <% end %>
+    </h3>
+    <ul class="list-actions">
+        <li><%= link_to t("members"), "#" %></li>
+        <li><%= link_to t("images.images"), "#" %><br></li>
+    </ul>
+  </div>
+  <div class="col-md-8 show-follow-images">
+    <div class="new-image">
+      <div class="description-field avatar-small">
+        <%= link_to image_tag("profile.jpg"), "#" %>
+        <%= text_area :description, class: "form-control" %>
+      </div>
+      <div class="image-file">
+        <%= file_field :image, class: "image-file" %>
+      </div>
+      <div class="actions">
+        <%= submit_tag t("upload-image"), class: "btn btn-primary" %>
+      </div>
+    </div>
+    <h3><%= t "recent-activity" %><h3>
+    <div class="recent-activity"></div>
+  </div>
+</div>
+<div id="new-group-modal" class="modal fade" role="dialog"></div>

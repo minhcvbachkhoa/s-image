@@ -2,18 +2,25 @@
 <% if user_signed_in? %>
   <div class="container">
     <div class="col-md-4 show-list-groups">
-      <div class="user-avatar-small">
+      <div class="avatar-small">
         <%= link_to image_tag("profile.jpg"), "#" %>
         <%= link_to current_user.name, "#" %>
       </div>
-      <h3><%= t "groups" %></h3>
-      <div class="list-groups"></div>
+      <h3><%= t "group-joined" %></h3>
+      <div class="list-groups">
+        <% @groups.each do |group| %>
+          <div class="group-avatar-smaller">
+            <%= link_to image_tag("profile.jpg"), group_path(group) %>
+            <%= link_to group.name, group_path(group) %><br>
+          </div>
+        <% end %>
+      </div>
     </div>
     <div class="col-md-8 show-follow-images">
       <div class="new-image">
-        <div class="description-field user-avatar-small">
+        <div class="description-field avatar-small">
           <%= link_to image_tag("profile.jpg"), "#" %>
-          <%= text_area :description, class: "form-control image-description" %>
+          <%= text_area :description, class: "form-control" %>
         </div>
         <div class="image-file">
           <%= file_field :image, class: "image-file" %>
@@ -37,3 +44,4 @@
     </div>
   </div>
 <% end %>
+<div id="new-group-modal" class="modal fade" role="dialog"></div>

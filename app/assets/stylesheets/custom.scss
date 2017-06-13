@@ -12,19 +12,15 @@ $mediumblue1: #036;
 
 body {
   background-color: $gray-medium-light;
-  font: arial;
   padding-top: 60px;
-
 }
 
 section {
   overflow: auto;
-
 }
 
 textarea {
   resize: vertical;
-
 }
 
 h1,
@@ -34,7 +30,6 @@ h4,
 h5,
 h6 {
   line-height: 1;
-
 }
 
 h1 {
@@ -42,7 +37,6 @@ h1 {
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
-
 }
 
 h2 {
@@ -52,13 +46,15 @@ h2 {
   letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
-
 }
 
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+}
 
+ul {
+  list-style-type: none;
 }
 
 .show-list-groups {
@@ -70,7 +66,33 @@ p {
     color: $gray-light;
     font-size: 1.2em;
     font-weight: bolder;
+  }
+}
 
+.show-group {
+  margin-left: -20px;
+  padding-left: 0;
+  padding-top: 20px;
+
+  h3 {
+    color: $gray-light;
+    font-size: 1.2em;
+    font-weight: bolder;
+  }
+
+  .list-actions {
+    font-size: 1.1em;
+    font-weight: bolder;
+    margin-left: -40px;
+    margin-top: 20px;
+  }
+
+  li {
+    padding: 5px;
+
+    &:hover {
+      background-color: $white;
+    }
   }
 }
 
@@ -87,33 +109,29 @@ p {
 
     img {
       float: left;
-
     }
 
     .description-field {
       border-bottom: 1px solid $gray-medium-light;
-
     }
 
     textarea {
       border: 0;
-      height: 100px;
+      font-weight: normal;
+      height: 70px;
       outline: none;
       padding: 10px;
       resize: none;
       width: 90%;
-
     }
 
     .image-file {
       margin-left: 50px;
       margin-top: 20px;
-
     }
 
     .actions {
       padding-left: 550px;
-
     }
   }
 
@@ -121,12 +139,10 @@ p {
     color: $gray-light;
     font-size: 1.2em;
     font-weight: bolder;
-
   }
 }
 
 .show-static-page {
-
   .center {
     background-image: url('background1.jpg');
     background-size: 100% 100%;
@@ -139,12 +155,10 @@ p {
       color: $white;
       margin-bottom: 100px;
       margin-top: 100px;
-
     }
 
     .btn-lg {
       font-weight: bolder;
-
     }
   }
 }
@@ -157,7 +171,6 @@ p {
     font-size: 1.7em;
     font-weight: bolder;
     width: 100%;
-
   }
 
   .content-section-a {
@@ -169,14 +182,12 @@ p {
       margin-right: 1px !important;
       text-align: center;
       width: 800px;
-
     }
 
     .img-responsive {
       float: right;
       height: 300px;
       width: 300px;
-
     }
   }
 
@@ -189,22 +200,18 @@ p {
     .img-responsive {
       height: 300px;
       width: 300px;
-
     }
 
     h3 {
       margin-left: 400px !important;
       text-align: center;
       width: 800px;
-
     }
   }
-
 }
 
 footer {
-  background-color: $white;
-  border-top: 1px solid $gray-medium-light;
+  border-top: 1px solid $white;
   margin-top: 45px;
   padding-top: 5px;
 
@@ -213,7 +220,6 @@ footer {
 
     &:hover {
       color: $gray-light;
-
     }
   }
 }
@@ -230,7 +236,6 @@ footer {
     &:hover {
       color: $white;
       text-decoration: none;
-
     }
   }
 
@@ -241,7 +246,6 @@ footer {
 
     &:hover {
       color: $white !important;
-
     }
   }
 
@@ -259,7 +263,6 @@ footer {
     &:hover {
       color: $white;
       text-decoration: none;
-
     }
   }
 
@@ -275,12 +278,10 @@ footer {
       position: absolute;
       right: 15px;
       top: 15px;
-
     }
 
     input {
       padding-right: 30px;
-
     }
   }
 
@@ -293,7 +294,6 @@ footer {
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 9px;
-
   }
 
   .dropdown-toggle {
@@ -303,7 +303,6 @@ footer {
 
     &:hover {
       color: $white !important;
-
     }
   }
 }
@@ -316,7 +315,6 @@ footer {
 
   .mainbox {
     margin-top: 40px;
-
   }
 }
 
@@ -328,28 +326,35 @@ footer {
 
   .mainbox {
     margin-top: 40px;
-
   }
 
   .input-group {
     margin-bottom: 10px;
     margin-top: 10px;
-
   }
 
   .checkbox {
     margin-left: 20px;
-
   }
 }
 
-.user-avatar-small {
+.avatar-small {
   font-size: 1.2em;
   font-weight: bold;
+  padding-bottom: 5px;
 
   img {
     height: 40px;
     width: 40px;
+  }
+}
 
+.group-avatar-smaller {
+  font-weight: bold;
+  margin-bottom: 5px;
+
+  img {
+    height: 35px;
+    width: 35px;
   }
 }
