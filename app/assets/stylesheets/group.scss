@@ -1,5 +1,37 @@
+$gray-medium-light: #eaeaea;
+$white: #fff;
+$black-medium: #333;
+
 .create-group-form {
   .create-group-modal {
     min-height: 55vh;
+  }
+}
+
+.cover-group {
+  img {
+    height: 50vh;
+    width: 100%;
+  }
+}
+
+.menu-group-actions {
+  background-color: $white;
+  height: 40px;
+  padding: 10px;
+
+  span {
+    background-color: $gray-medium-light;
+    border: 1px;
+    margin-right: 10px;
+    padding: 10px;
+  }
+}
+
+a {
+  color: $black-medium;
+
+  &:hover {
+    text-decoration: none;
   }
 }

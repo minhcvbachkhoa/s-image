@@ -1,0 +1,3 @@
+<% provide :button_text, t("groups.save-changes") %>
+$('#edit-group-modal').html('<%= j render "form", group: @group %>');
+$('#edit-group-modal').modal('show');

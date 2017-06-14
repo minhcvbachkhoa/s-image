@@ -1,26 +1,27 @@
 <% provide :title, t("pages.home") %>
 <% if user_signed_in? %>
   <div class="container">
-    <div class="col-md-4 show-list-groups">
+    <div class="col-md-2 show-list-groups">
       <div class="avatar-small">
-        <%= link_to image_tag("profile.jpg"), "#" %>
+        <%= link_to image_tag(avatar_user(current_user)), "#" %>
         <%= link_to current_user.name, "#" %>
       </div>
       <h3><%= t "group-joined" %></h3>
       <div class="list-groups">
         <% @groups.each do |group| %>
           <div class="group-avatar-smaller">
-            <%= link_to image_tag("profile.jpg"), group_path(group) %>
+            <%= link_to image_tag(avatar_group(group)), group_path(group) %>
             <%= link_to group.name, group_path(group) %><br>
           </div>
         <% end %>
       </div>
     </div>
-    <div class="col-md-8 show-follow-images">
+    <div class="col-md-10 show-follow-images">
       <div class="new-image">
         <div class="description-field avatar-small">
-          <%= link_to image_tag("profile.jpg"), "#" %>
-          <%= text_area :description, class: "form-control" %>
+          <%= link_to image_tag(avatar_user(current_user)), "#" %>
+          <%= text_area :description, t("images.description"),
+            class: "form-control", placeholder: t("write-something") %>
         </div>
         <div class="image-file">
           <%= file_field :image, class: "image-file" %>

@@ -1,12 +1,7 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_group, except: [:index, :new, :create]
-  before_action :is_admin_group?, only: [:edit, :update, :destroy, :show]
-
-  def show
-    @images = @group.images
-    @users = @group.users
-  end
+  before_action :is_admin_group?, only: [:edit, :update, :destroy]
 
   def new
     @group = Group.new
@@ -28,6 +23,29 @@ class GroupsController < ApplicationController
         format.js
       end
     end
+  end
+
+ def show
+    @images = @group.images
+    @users = @group.users
+  end
+
+  def edit
+  end
+
+  def update
+    if @group.update_attributes group_params
+      flash[:success] = t "groups.group-updated"
+      redirect_to @group
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @group.destroy
+    flash[:success] = t "groups.group-deleted"
+    redirect_to root_url
   end
 
   private

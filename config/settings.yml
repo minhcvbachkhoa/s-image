@@ -1,0 +1,2 @@
+objs: ["user", "group"]
+attrs: ["avatar", "cover"]
