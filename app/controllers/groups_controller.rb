@@ -25,11 +25,6 @@ class GroupsController < ApplicationController
     end
   end
 
- def show
-    @images = @group.images
-    @users = @group.users
-  end
-
   def edit
   end
 

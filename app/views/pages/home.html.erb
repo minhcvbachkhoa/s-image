@@ -3,8 +3,9 @@
   <div class="container">
     <div class="col-md-2 show-list-groups">
       <div class="avatar-small">
-        <%= link_to image_tag(avatar_user(current_user)), "#" %>
-        <%= link_to current_user.name, "#" %>
+        <%= link_to image_tag(avatar_user(current_user)),
+          user_path(current_user) %>
+        <%= link_to current_user.name, user_path(current_user) %>
       </div>
       <h3><%= t "group-joined" %></h3>
       <div class="list-groups">
@@ -19,7 +20,8 @@
     <div class="col-md-10 show-follow-images">
       <div class="new-image">
         <div class="description-field avatar-small">
-          <%= link_to image_tag(avatar_user(current_user)), "#" %>
+          <%= link_to image_tag(avatar_user(current_user)),
+            user_path(current_user) %>
           <%= text_area :description, t("images.description"),
             class: "form-control", placeholder: t("write-something") %>
         </div>

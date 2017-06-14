@@ -6,7 +6,7 @@ module ApplicationHelper
   Settings.objs.each do |obj|
     Settings.attrs.each do |attr|
       define_method("#{attr}_#{obj}") do |object|
-        object.send(attr).present? ? object.send(attr).url : "#{attr}_#{obj}.jpg"
+        object.send(attr).present? ? object.send(attr) : "#{attr}_#{obj}.jpg"
       end
     end
   end
