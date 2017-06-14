@@ -117,6 +117,13 @@
           </div>
         </div>
       <% end %>
+      <% if @supports.images.empty? %>
+        <h3 class="no-content"><%= t :no_content %></h3>
+      <% else %>
+        <% @supports.images.each do |image| %>
+          <%= render "images/image", image: image %>
+        <% end %>
+      <% end %>
     </div>
     <%= render "cover_form", user: @user %>
     <%= render "avatar_form", user: @user %>

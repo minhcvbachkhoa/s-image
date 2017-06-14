@@ -1,10 +1,14 @@
 class GroupsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :find_group, except: [:index, :new, :create]
   before_action :is_admin_group?, only: [:edit, :update, :destroy]
+  before_action :find_supports, only: :show
 
   def new
     @group = Group.new
+  end
+
+  def show
   end
 
   def create
@@ -61,5 +65,9 @@ class GroupsController < ApplicationController
       flash[:warning] = t "groups.not-admin-group"
       redirect_to @group
     end
+  end
+
+  def find_supports
+    @supports = Supports::Group.new @group
   end
 end

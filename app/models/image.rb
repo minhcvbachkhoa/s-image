@@ -9,6 +9,12 @@ class Image < ApplicationRecord
   validates :image, presence: true
   validates :imageable, presence: true
 
+  scope :order_by_created_at, (->{order created_at: :desc})
+  scope :images_feed, (->user do
+    where imageable_id: user.following_ids << user.id,
+      imageable_type: User.name
+  end)
+
   mount_uploader :image, ImageUploader
 
   def user
