@@ -1,6 +1,7 @@
 objs: ["user", "group"]
 attrs: ["avatar", "cover"]
 classes: ["User", "GroupUser", "Album"]
+metas: ["User", "Image"]
 load_more_user_size: 4
 load_more_image_size: 4
 load_more_comment_size: 3

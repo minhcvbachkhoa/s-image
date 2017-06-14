@@ -1,0 +1,4 @@
+<% unless @bookmark.errors.any? %>
+  $('#image-bookmark-<%= @image.id %>')
+    .html('<%= j render "unbookmark", image: @image, bookmark: @bookmark %>');
+<% end %>

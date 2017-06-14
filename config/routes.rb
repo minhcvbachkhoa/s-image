@@ -8,10 +8,12 @@ Rails.application.routes.draw do
   resources :groups
   resources :users, except: [:new, :create] do
     resources :relationships, only: [:create, :destroy]
+    resources :bookmarks, only: :index
   end
   resources :relationships, only: :index
   resources :images do
     resources :comments, except: :show
+    resources :bookmarks, only: [:create, :destroy]
   end
   resources :albums
 end

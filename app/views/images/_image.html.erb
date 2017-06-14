@@ -20,8 +20,8 @@
               data: {toggle: "dropdown"} do %>
             <%= image_tag "arrow.png", class: "icon" %>
           <% end %>
-          <% if image.user.current_user? current_user %>
-            <ul class="dropdown-menu">
+          <ul class="dropdown-menu">
+            <% if image.user.current_user? current_user %>
               <%= link_to edit_image_path(image), remote: true do %>
                 <li>
                   <span>
@@ -39,8 +39,13 @@
                   <span><%= t "images.delete" %></span>
                 </li>
               <% end %>
-            </ul>
-          <% end %>
+            <% end %>
+            <% unless image.user.current_user? current_user %>
+              <span id="image-bookmark-<%= image.id %>">
+                <%= render "bookmarks/bookmark_form", image: image %>
+              </span>
+            <% end %>
+          </ul>
         </span>
       </div>
     </span>

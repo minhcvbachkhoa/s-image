@@ -33,6 +33,12 @@ class Image < ApplicationRecord
     Category.all
   end
 
+  class << self
+    def bookmarked_images user
+      Image.where(id: user.bookmarks.pluck(:likeable_id)).order id: :desc
+    end
+  end
+
   private
   Settings.classes.each do |subj|
     define_method("imageable_is_#{subj.tableize}?") do
