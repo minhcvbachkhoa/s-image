@@ -1,0 +1,5 @@
+<%= link_to polymorphic_path([object, like],
+  likeable_type: object.class.name, likeable_id: object.id),
+  method: :delete, remote: true do %>
+  <i class="fa fa-thumbs-up like" aria-hidden="true"><%= t "unlike" %></i>
+<% end %>

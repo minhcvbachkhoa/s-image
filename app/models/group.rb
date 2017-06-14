@@ -10,6 +10,8 @@ class Group < ApplicationRecord
 
   enum policy: [:is_public, :is_private]
 
+  mount_uploader :cover, ImageUploader
+
   def have_member? user
     users.include? user
   end

@@ -1,0 +1,5 @@
+<%= link_to polymorphic_path([object, Like.new],
+  likeable_type: object.class.name, likeable_id: object.id),
+  method: :post, remote: true do %>
+  <i class="fa fa-thumbs-up" aria-hidden="true"><%= t "like" %></i>
+<% end %>
