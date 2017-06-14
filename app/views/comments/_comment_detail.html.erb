@@ -26,18 +26,33 @@
             </span>
             <span>-</span>
           <% end %>
-          <span
-            class="reply-comments-action <%= comment.id %> comment-btn-action">
-            <%= link_to t("comments.reply"), "#", remote: true %>
-          </span>
-          <span>-</span>
-            <% if comment.created_at != comment.updated_at %>
-              <span><%= time_ago_in_words comment.created_at %></span>
-              <span>-</span>
-              <span><%= t "comments.changed" %></span>
-            <% else %>
-              <span><%= time_ago_in_words comment.created_at %></span>
-            <% end %>
+          <% if comment.depth < Settings.limit_depth - 1 %>
+            <span
+              class="reply-comments-action <%= comment.id %> comment-btn-action">
+              <%= link_to t("comments.reply"),
+                new_image_comment_path(comment.image, parent_id: comment.id),
+                remote: true %>
+            </span>
+            <span>-</span>
+          <% end %>
+          <% if comment.created_at != comment.updated_at %>
+            <span><%= time_ago_in_words comment.created_at %></span>
+            <span>-</span>
+            <span><%= t "comments.changed" %></span>
+          <% else %>
+            <span><%= time_ago_in_words comment.created_at %></span>
+          <% end %>
+        </div>
+
+        <div class="reply-comments"
+          id="reply-comment-form-<%= comment.id %>">
+        </div>
+        <div class="reply-comments"
+          id="reply-comments-<%= comment.id %>">
+          <% comment.descendants.map do |reply_comment, reply| %>
+            <%= render "comments/comment", comment: reply_comment %>
+            <%= render "comments/edit_form", comment: reply_comment %>
+          <% end %>
         </div>
       </div>
     </span>

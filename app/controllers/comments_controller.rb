@@ -1,24 +1,19 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!, except: :index
-  before_action :find_image
+  before_action :find_image, except: [:create, :new]
   before_action :find_comment, only: [:edit, :update, :destroy]
 
   def index
-    @comments = @image.main_comments
-    unless @comments.empty?
-      comment_offset = params[:comment_offset] || (@comments.first.id + 1)
-      @comments = @comments.show_more_comment comment_offset
-    end
+    @comments = @image.comments.hash_tree(limit_depth: Settings.limit_depth)
+    @comments.delete_if{|root, _replys| root.id >= params[:offset].to_i}
   end
 
   def new
+    @comment = Comment.new parent_id: params[:parent_id]
   end
 
   def create
-    @comment = Comment.new comment_params
-    @comment.image = @image
-    @comment.user = current_user
-    @success = @comment.save
+    @comment = Comment.create comment_params
   end
 
   def edit
@@ -34,7 +29,7 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
-    params.require(:comment).permit :reply_id, :content, :parent_id
+    params.require(:comment).permit :content, :parent_id, :image_id, :user_id
   end
 
   def find_image

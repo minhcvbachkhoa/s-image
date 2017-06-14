@@ -23,6 +23,7 @@ gem "bootstrap-will_paginate", "0.0.10"
 gem "faker", "1.7.3"
 gem "carrierwave"
 gem "mini_magick", "3.8.0"
+gem "closure_tree"
 
 group :development, :test do
   gem "byebug", platform: :mri

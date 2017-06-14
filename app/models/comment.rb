@@ -8,7 +8,13 @@ class Comment < ApplicationRecord
   validates :image, presence: true
   validates :content, presence: true
 
-  scope :show_more_comment, (->offset do
-    where("id < ?", offset).limit Settings.load_more_comment_size
-  end)
+  acts_as_tree order: "created_at DESC", dependent: :destroy
+
+  def parent
+    if self.present? && self.parent_id.present?
+      Comment.find_by id: self.parent_id
+    else
+      self
+    end
+  end
 end
