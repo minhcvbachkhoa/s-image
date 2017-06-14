@@ -155,3 +155,11 @@ vi:
   create-album-error: "Lỗi tạo album"
   album-not-found: "Không tìm thấy album"
   set-name-album: "Đặt tên album"
+  delete: "Xóa"
+  comments:
+    reply: "Trả lời"
+    comment: "Bình luận"
+    not-found: "Không tìm thấy bình luận"
+    edit: "Chỉnh sửa"
+    comment-error: "Xảy ra lỗi khi bình luận"
+    changed: "Đã chỉnh sửa"

@@ -1,0 +1,13 @@
+<% @comments.each do |comment| %>
+  $('#images-comments-<%= @image.id %>')
+    .append('<%= j render "comment", comment: comment %>');
+  $('#images-comments-<%= @image.id %>')
+    .append('<%= j render "comments/edit_form", comment: comment %>');
+<% end %>
+<% if @comments.size < Settings.load_more_comment_size %>
+  $('#load-more-image-comments-<%= @image.id %>').hide();
+<% else %>
+  $('#load-more-image-comments-<%= @image.id %>')
+    .html('<%= link_to t("view-more"), image_comments_path(@image,
+    comment_offset: @comments.last.id), remote: true %>');
+<% end %>

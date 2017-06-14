@@ -61,6 +61,41 @@
     </div>
     <hr>
   </div>
+  <div class="images-footer">
+    <span class="images-comments">
+      <%= image_tag "comment.png", class: "images-comment-icon" %>
+      <span id="comment-size-<%= image.id %>">
+        <%= image.main_comments.size %>
+      </span>
+      <%= t "comments.comment" %>
+    </span>
+    <hr>
+  </div>
+  <div class="image-comment-form">
+    <%= form_for [image, Comment.new], remote: true do |f| %>
+      <%= image_tag avatar_user(current_user),
+        class: "img-responsive img-avatar-comment" %>
+      <%= f.text_field :content, placeholder: t("write-something"),
+        class: "form-control comment-form-content",
+        id: "image-comment-form-content-#{image.id}" %>
+    <% end %>
+    <hr>
+  </div>
+
+  <div class="images-comments" id="images-comments-<%= image.id %>">
+    <% image_comments = image.main_comments.offset(0)
+      .limit Settings.load_more_comment_size %>
+    <% image_comments.each do |comment| %>
+      <%= render "comments/comment", comment: comment %>
+      <%= render "comments/edit_form", image: image, comment: comment %>
+    <% end %>
+  </div>
+  <div id="load-more-image-comments-<%= image.id %>">
+    <% if image.main_comments.size > image_comments.size %>
+      <%= link_to t("view-more"), image_comments_path(image,
+        comment_offset: image_comments.last.id), remote: true %>
+    <% end %>
+  </div>
   <%= render "images/image_modal", image: image %>
 </div>
 <div id="edit-image-modal-<%= image.id %>" class="modal fade" role="dialog">
