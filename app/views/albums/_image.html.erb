@@ -1,0 +1,71 @@
+<div class="images">
+  <div class="images-header">
+    <span class="images-header-content">
+      <div class="images-header-info">
+        <span class="dropdown header-item images-header-icon icon-arrow">
+          <% if user_signed_in? %>
+            <%= link_to "#", class: "dropdown-toggle",
+                data: {toggle: "dropdown"} do %>
+              <%= image_tag "arrow.png", class: "icon" %>
+            <% end %>
+            <ul class="dropdown-menu">
+              <% if image.user.current_user? current_user %>
+                <%= link_to edit_image_path(image), remote: true do %>
+                  <li>
+                    <span>
+                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </span>
+                    <span><%= t "images.edit" %></span>
+                  </li>
+                <% end %>
+                <%= link_to image_path(image), method: :delete,
+                  data: {confirm: t("you_sure")} do %>
+                  <li>
+                    <span>
+                      <i class="fa fa-times" aria-hidden="true"></i>
+                    </span>
+                    <span><%= t "images.delete" %></span>
+                  </li>
+                <% end %>
+              <% else %>
+                <span id="image-bookmark-<%= image.id %>">
+                  <%= render "bookmarks/bookmark_form", image: image %>
+                </span>
+              <% end %>
+            </ul>
+          <% end %>
+        </span>
+      </div>
+    </span>
+  </div>
+  <div class="images-body">
+    <div class="images-body-image">
+      <%= link_to image_tag(image.image.url), image_path(image),
+        class: "img-responsive images-show" %>
+    </div>
+    <div class="images-body-description">
+      <%= truncate image.description,
+        length: Settings.length_truncate_description %>
+    </div>
+
+    <div class="images-body-category">
+      <span><b><%= t "category" %> : </b></span>
+      <%= link_to image.category.name, "#" %>
+    </div>
+    <hr>
+  </div>
+  <div class="images-footer">
+    <span class="images-comments">
+      <%= image_tag "comment.png", class: "images-comment-icon" %>
+      <span id="comment-size-<%= image.id %>">
+        <%= image.comments.hash_tree(limit_depth: Settings.limit_depth).size %>
+      </span>
+      <%= t "comments.comment" %>
+      <span>-</span>
+      <span><small><%= time_ago_in_words image.created_at %></small></span>
+    </span>
+    <hr>
+  </div>
+</div>
+<div id="edit-image-modal-<%= image.id %>" class="modal fade" role="dialog">
+</div>

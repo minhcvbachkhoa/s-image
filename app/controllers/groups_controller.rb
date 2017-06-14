@@ -3,6 +3,16 @@ class GroupsController < ApplicationController
   before_action :find_group, except: [:index, :new, :create]
   before_action :is_admin_group?, only: [:edit, :update, :destroy]
   before_action :find_supports, only: :show
+  before_action :find_user, only: :index
+
+  def index
+    @groups =
+      if @user.current_user? current_user
+        @user.groups
+      else
+        @user.groups.is_public
+      end
+  end
 
   def new
     @group = Group.new
@@ -14,7 +24,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new group_params
     if @group.save
-      @group_user = GroupUser.create! group_id: @group.id,
+      GroupUser.create! group_id: @group.id,
         user_id: current_user.id, admin_group: true
       flash[:success] = t "groups.group-created"
       redirect_to @group
@@ -50,10 +60,9 @@ class GroupsController < ApplicationController
   private
   def find_group
     @group = Group.find_by id: params[:id]
-    unless @group
-      flash[:warning] = t "groups.group-not-found"
-      redirect_to root_path
-    end
+    return if @group
+    flash[:warning] = t "groups.not-found"
+    redirect_to root_path
   end
 
   def group_params
@@ -69,5 +78,12 @@ class GroupsController < ApplicationController
 
   def find_supports
     @supports = Supports::Group.new @group
+  end
+
+  def find_user
+    @user = User.find_by id: params[:user_id]
+    return if @user
+    flash[:warning] = t "users.not-found"
+    redirect_to root_path
   end
 end

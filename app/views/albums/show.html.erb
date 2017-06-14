@@ -1,64 +1,33 @@
 <div class="row">
   <div class="user-show">
     <div class="user-show-left">
-      <div class="user-image">
-        <div class="user-cover">
-          <%= image_tag cover_user(@album.user), class: "img-responsive
-            img-user-cover" %>
-          <% if @album.user.current_user? current_user %>
-            <div class="user-cover-update-text" data-toggle="modal"
-              data-target="#user-cover-modal">
-              <%= t "change-cover" %>
-            </div>
-          <% end %>
-        </div>
-
-        <div class="user-avatar">
-          <%= image_tag avatar_user(@album.user), class: "img-responsive
-            img-user-avatar" %>
-          <% if @album.user.current_user? current_user %>
-            <p class="user-avatar-update-text" data-toggle="modal"
-              data-target="#user-avatar-modal">
-              <%= t "change-avatar" %>
-            </p>
-          <% end %>
-        </div>
-
-        <div class="user-full-name">
-          <%= @album.user.name %>
-        </div>
-        <% unless @album.user.current_user? current_user %>
-          <div class="follow-users-btn">
-            <%= render "relationships/follow_form", user: @album.user %>
-          </div>
-        <% end %>
-      </div>
-      <div class="menu-group-actions">
-        <span>
-          <%= link_to t("users.group-joined"), "#" %>
-        </span>
-        <span>
-          <%= link_to t("users.list-albums"), "#" %>
-        </span>
-        <span>
-          <%= link_to t("users.images"), "#" %>
-        </span>
-        <span></span>
-      </div>
+      <%= render "users/user_header_form", user: @album.user %>
       <div class="show-album">
-        <h3 class="album-name"><%= @album.name %></h3>
-        <% if @album.images.empty? %>
-          <h3 class="no-content"><%= t :no_content %></h3>
-        <% else %>
+        <h3 class="album-name">
+          <%= @album.name %>
+          <p class="album-update-text" data-toggle="modal"
+            data-target="#edit-album-modal">
+            <%= t "images.edit" %>
+          </p>
+        </h3>
+        <% if @album.images.any? %>
           <% @album.images.each do |image| %>
             <div class="col-md-3 show-image-album">
-              <%= render "images/image", image: image %>
+              <%= render "image", image: image %>
             </div>
           <% end %>
         <% end %>
+        <div class="col-md-3 new-image-album">
+        <%= link_to new_image_path(imageable_type: @album.class.name,
+          imageable_id: @album.id), remote: true do %>
+          <i class="fa fa-plus" aria-hidden="true"></i>
+        <% end %>
+        </div>
       </div>
     </div>
     <%= render "users/cover_form", user: @album.user %>
     <%= render "users/avatar_form", user: @album.user %>
+    <%= render "name_form", album: @album %>
   </div>
 </div>
+<div id="images-upload-modal" class="modal fade" role="dialog"></div>

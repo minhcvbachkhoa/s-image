@@ -1,50 +1,7 @@
 <div class="row">
   <div class="user-show">
     <div class="user-show-left">
-      <div class="user-image">
-        <div class="user-cover">
-          <%= image_tag cover_user(@user), class: "img-responsive
-            img-user-cover" %>
-          <% if @user.current_user? current_user %>
-            <div class="user-cover-update-text" data-toggle="modal"
-              data-target="#user-cover-modal">
-              <%= t "change-cover" %>
-            </div>
-          <% end %>
-        </div>
-
-        <div class="user-avatar">
-          <%= image_tag avatar_user(@user), class: "img-responsive
-            img-user-avatar" %>
-          <% if @user.current_user? current_user %>
-            <p class="user-avatar-update-text" data-toggle="modal"
-              data-target="#user-avatar-modal">
-              <%= t "change-avatar" %>
-            </p>
-          <% end %>
-        </div>
-
-        <div class="user-full-name">
-          <%= @user.name %>
-        </div>
-        <% unless @user.current_user? current_user %>
-          <div class="follow-users-btn">
-            <%= render "relationships/follow_form", user: @user %>
-          </div>
-        <% end %>
-      </div>
-      <div class="menu-group-actions">
-        <span>
-          <%= link_to t("users.group-joined"), "#" %>
-        </span>
-        <span>
-          <%= link_to t("users.list-albums"), "#" %>
-        </span>
-        <span>
-          <%= link_to t("users.images"), "#" %>
-        </span>
-        <span></span>
-      </div>
+      <%= render "user_header_form", user: @user %>
       <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4 user-show-left">
         <div class="user-info">
           <div class="user-form-info">
@@ -130,5 +87,4 @@
   </div>
 </div>
 <div id="edit-user-modal" class="modal fade" role="dialog"></div>
-<div id="new-group-modal" class="modal fade" role="dialog"></div>
 <div id="images-upload-modal" class="modal fade" role="dialog"></div>

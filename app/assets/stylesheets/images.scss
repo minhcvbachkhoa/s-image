@@ -252,11 +252,160 @@ $blue1: #365899;
 
 .show-album {
   .album-name {
+    background-color: $white;
+    font-size: 30px;
+    font-weight: bolder;
+    margin: 20px 300px 0;
+    padding: 30px;
+    text-align: center;
+
+    .album-update-text {
+      background: $black;
+      color: $white;
+      cursor: pointer;
+      display: none;
+      font-size: 16px;
+      font-weight: bolder;
+      margin-bottom: 0;
+      margin-left: 210px;
+      margin-top: -27px;
+      padding: 0;
+      width: 200px;
+    }
+  }
+
+  img {
+    height: 300px;
+    width: 100%;
+  }
+
+  .images {
+    height: 422px;
+  }
+
+  .show-image-album {
+    padding: 5px;
+  }
+
+  .new-image-album {
+    background-color: $white;
+    box-shadow: 1px 2px 4px 1px $black2 !important;
+    font-size: 200px;
+    height: 422px;
+    margin-left: 5px;
+    margin-top: 14px;
+    padding: 80px;
+    text-align: center;
+    width: 310px;
+
+    .fa {
+      color: $blue1;
+    }
+  }
+}
+
+.icon-arrow {
+  margin-right: -5px;
+  margin-top: -10px;
+}
+
+.index-bookmarked-images {
+  margin-top: -15px;
+
+  .images {
+    margin: 10px;
+    padding: 15px;
+  }
+}
+
+.fa-thumbs-up {
+  font-size: 16px !important;
+}
+
+.like {
+  color: $blue1;
+}
+
+.like-icon {
+  color: $blue1;
+  height: 30px;
+  text-align: right;
+  width: 30px;
+}
+
+.show-list-album {
+  .album-name {
+    background-color: $white;
+    font-size: 30px;
+    font-weight: bolder;
+    margin: 20px 300px 0;
+    padding: 30px;
     text-align: center;
   }
 
-  .images-show {
+  h3 {
+    font-size: 30px;
+    font-weight: bolder;
+    text-align: center;
+  }
+
+  img {
     height: 300px;
+    width: 100%;
+  }
+
+  .images {
+    font-size: 20px;
+    font-weight: bolder;
+    height: 380px;
+
+    .fa {
+      float: right;
+    }
+  }
+
+  .show-image-album {
+    padding: 5px;
+  }
+
+  .new-image-album {
+    background-color: $white;
+    box-shadow: 1px 2px 4px 1px $black2 !important;
+    font-size: 200px;
+    height: 380px;
+    margin-left: 5px;
+    margin-top: 14px;
+    padding: 80px;
+    text-align: center;
+    width: 310px;
+
+    .fa {
+      color: $blue1;
+    }
+  }
+}
+
+.show-list-group {
+  h3 {
+    font-size: 30px;
+    font-weight: bolder;
+    text-align: center;
+  }
+
+  img {
+    height: 300px;
+    width: 100%;
+  }
+
+  .images {
+    font-size: 14px;
+    font-weight: bolder;
+    height: 350px;
+    padding-bottom: 10px;
+
+    .fa {
+      float: right;
+    }
   }
 }
 
@@ -282,4 +431,15 @@ $blue1: #365899;
   height: 30px;
   text-align: right;
   width: 30px;
+}
+
+.follow-button {
+  float: right;
+  margin: 5px;
+  top: 0;
+}
+
+.number-image-of-album {
+  font-size: 14px;
+  font-weight: normal;
 }

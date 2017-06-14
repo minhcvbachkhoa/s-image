@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="user-show">
+    <div class="user-show-left">
+      <%= render "users/user_header_form", user: @user %>
+      <div class="show-list-album">
+        <h3><%= t "albums" %></h3>
+        <% if @albums.any? %>
+          <% @albums.each do |album| %>
+            <div class="col-md-3 show-image-album">
+              <div class="images">
+                <span><b><%= album.name %></b></span>
+                <% if @user.current_user? current_user %>
+                  <%= link_to album_path(album), method: :delete,
+                    data: {confirm: t("you_sure")} do %>
+                    <span>
+                      <i class="fa fa-times" aria-hidden="true"></i>
+                    </span>
+                  <% end %>
+                <% end %>
+                <% if album.images.empty? %>
+                  <%= link_to image_tag(""),
+                    album_path(album), class: "img-responsive images-show" %>
+                <% else %>
+                  <%= link_to image_tag(album.images.first.image.url),
+                    album_path(album), class: "img-responsive images-show" %>
+                <% end %>
+                <span class="number-image-of-album">
+                  <%= album.images.size %> <%= t "images.images" %>
+                </span>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        <% if @user.current_user? current_user %>
+          <div class="col-md-3 new-image-album">
+          <%= link_to new_album_path, remote: true do %>
+            <i class="fa fa-plus" aria-hidden="true"></i>
+          <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <%= render "users/cover_form", user: @user %>
+    <%= render "users/avatar_form", user: @user %>
+  </div>
+</div>

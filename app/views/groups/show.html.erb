@@ -16,7 +16,7 @@
     </h3>
     <ul class="list-actions">
         <li><%= link_to t("members"), "#" %></li>
-        <li><%= link_to t("images.images"), "#" %><br></li>
+        <li><%= link_to t("images.images"), group_path(@group) %><br></li>
     </ul>
     <% if user_signed_in? %>
       <h3><%= t "group-joined" %></h3>
@@ -58,13 +58,22 @@
       <% end %>
       <span><%= link_to t("groups.add-member"), "#" %></span>
       <% if user_signed_in? && current_user.is_admin_group?(@group) %>
-        <span>
-          <%= link_to t("groups.update-info"),
-            edit_group_path(@group), remote: true %>
-        </span>
-        <span>
-          <%= link_to t("groups.delete-group"), @group, method: :delete,
-            data: {confirm: t("you_sure")} %>
+        <span class="dropdown">
+          <%= link_to "#", class: "dropdown-toggle",
+            data: {toggle: "dropdown"} do %>
+            <%= t "groups.update-info" %>
+            <b class="caret"></b>
+          <% end %>
+          <ul class="dropdown-menu">
+            <li>
+              <%= link_to t("groups.update-info"),
+                edit_group_path(@group), remote: true %>
+            </li>
+            <li>
+              <%= link_to t("groups.delete-group"), @group, method: :delete,
+                data: {confirm: t("you_sure")} %>
+            </li>
+          </ul>
         </span>
       <% end %>
     </div>
@@ -101,5 +110,4 @@
   </div>
 </div>
 <div id="edit-group-modal" class="modal fade" role="dialog"></div>
-<div id="new-group-modal" class="modal fade" role="dialog"></div>
 <div id="images-upload-modal" class="modal fade" role="dialog"></div>

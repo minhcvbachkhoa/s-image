@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :users, except: [:new, :create] do
     resources :relationships, only: [:create, :destroy]
     resources :bookmarks, only: :index
+    resources :albums, only: :index
+    resources :groups, only: :index
   end
   resources :relationships, only: :index
   resources :images do
@@ -16,7 +18,7 @@ Rails.application.routes.draw do
     resources :bookmarks, only: [:create, :destroy]
     resources :likes, only: [:create, :destroy]
   end
-  resources :albums
+  resources :albums, except: :index
   resources :comments do
     resources :likes, only: [:create, :destroy]
   end

@@ -1,0 +1,44 @@
+<div class="user-image">
+  <div class="user-cover">
+    <%= image_tag cover_user(user), class: "img-responsive
+      img-user-cover" %>
+    <% if user.current_user? current_user %>
+      <div class="user-cover-update-text" data-toggle="modal"
+        data-target="#user-cover-modal">
+        <%= t "change-cover" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="user-avatar">
+    <%= image_tag avatar_user(user), class: "img-responsive
+      img-user-avatar" %>
+    <% if user.current_user? current_user %>
+      <p class="user-avatar-update-text" data-toggle="modal"
+        data-target="#user-avatar-modal">
+        <%= t "change-avatar" %>
+      </p>
+    <% end %>
+  </div>
+
+  <div class="user-full-name">
+    <%= user.name %>
+  </div>
+  <% unless user.current_user? current_user %>
+    <div class="follow-users-btn">
+      <%= render "relationships/follow_form", user: user %>
+    </div>
+  <% end %>
+</div>
+<div class="menu-group-actions">
+  <span>
+    <%= link_to t("users.time-line"), user_path(user) %>
+  </span>
+  <span>
+    <%= link_to t("users.list-albums"), user_albums_path(user) %>
+  </span>
+  <span>
+    <%= link_to t("users.group-joined"), user_groups_path(user) %>
+  </span>
+  <span></span>
+</div>

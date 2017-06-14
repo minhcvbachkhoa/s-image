@@ -1,3 +1,3 @@
 <% provide :button_text, t("users.create-album") %>
-$('#new-album-modal').html('<%= j render "form", album: @album, categories: @categories %>');
+$('#new-album-modal').html('<%= j render "form", album: @album %>');
 $('#new-album-modal').modal('show');

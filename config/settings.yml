@@ -9,3 +9,4 @@ length_more_user: 4
 length_name: 15
 length_more_name: 30
 limit_depth: 2
+length_truncate_description: 45

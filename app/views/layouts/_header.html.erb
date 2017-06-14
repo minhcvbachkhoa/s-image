@@ -24,8 +24,19 @@
           </div>
         </li>
         <% if user_signed_in? %>
-          <li><div class="home"><%= link_to t("members"), users_path %></div></li>
-          <li><div class="home"><%= link_to t("albums"), "#" %></div></li>
+          <li>
+            <div class="home"><%= link_to t("members"), users_path %></div>
+          </li>
+          <li class="dropdown">
+            <%= link_to "#", class: "dropdown-toggle",
+              data: {toggle: "dropdown"} do %>
+              <%= t "notification" %>
+            <% end %>
+            <span class="list-notifications">
+              <ul class="notification">
+              </ul>
+            </span>
+          </li>
           <li class="dropdown">
             <%= link_to "#", class: "dropdown-toggle",
               data: {toggle: "dropdown"} do %>

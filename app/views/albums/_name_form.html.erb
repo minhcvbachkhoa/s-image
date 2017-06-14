@@ -1,0 +1,33 @@
+<div id="edit-album-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog album-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <h4 class="modal-title"><%= t "users.edit-album" %></h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for album, method: :patch, multipart: true,
+          authenticity_token: true, remote: true do |f| %>
+          <div class="album-form-errors">
+            <%= render "shared/error_messages", object: album %>
+          </div>
+
+          <div class="user-cover-img">
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+
+          <div class="user-form-submit">
+            <%= f.submit t("save-changes"), class: "btn btn-primary user-cover-btn-save" %>
+            <button class="btn btn-danger user-cover-btn-cancel"
+              data-dismiss="modal">
+              <%= t "cancel" %>
+            </button>
+          </div>
+          <div class="clearfix"></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

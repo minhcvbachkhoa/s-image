@@ -50,7 +50,7 @@ vi:
     home: "Trang chủ"
     about: "Về chúng tôi"
   groups:
-    group-not-found: "Không tìm thấy nhóm"
+    not-found: "Không tìm thấy nhóm"
     group-created: "Tạo nhóm thành công"
     group-updated: "Nhóm đã được cập nhật"
     group-deleted: "Xóa nhóm thành công"
@@ -103,7 +103,9 @@ vi:
     followed: "Đang theo dõi"
     followers: "Người theo dõi"
     create-album: "Tạo album"
+    edit-album: "Cập nhật album"
     bookmark-error: "Lỗi bookmark"
+    time-line: "Dòng thời gian"
   error: "lỗi"
   activerecord:
     errors:
@@ -158,6 +160,7 @@ vi:
   album-not-found: "Không tìm thấy album"
   set-name-album: "Đặt tên album"
   delete: "Xóa"
+  name-album-updated: "Đã đổi tên album"
   comments:
     reply: "Trả lời"
     comment: "Bình luận"
@@ -169,3 +172,4 @@ vi:
   unlike: "Bỏ thích"
   bookmark: "Đánh dấu"
   unbookmark: "Bỏ đánh dấu"
+  notification: "Thông báo"
