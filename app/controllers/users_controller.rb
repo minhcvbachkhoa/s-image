@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update]
   before_action :find_user, except: [:index]
+  before_action :correct_user, only: [:edit, :update]
+  before_action :admin_user, only: :destroy
+  before_action :find_relationships, only: :show
 
   def index
-    @users = User.all
+    @users = User.not_admin.paginate page: params[:page]
   end
 
   def edit
@@ -36,5 +40,17 @@ class UsersController < ApplicationController
       flash[:danger] = t "users.not-found"
       redirect_to root_path
     end
+  end
+
+  def correct_user
+    redirect_to root_path unless @user.current_user? current_user
+  end
+
+  def admin_user
+    redirect_to root_url if current_user.not_admin?
+  end
+
+  def find_relationships
+    @supports = Supports::User.new @user
   end
 end

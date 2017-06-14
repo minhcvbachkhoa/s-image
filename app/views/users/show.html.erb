@@ -5,7 +5,7 @@
         <div class="user-cover">
           <%= image_tag cover_user(@user), class: "img-responsive
             img-user-cover" %>
-          <% if current_user.current_user? @user %>
+          <% if @user.current_user? current_user %>
             <div class="user-cover-update-text" data-toggle="modal"
               data-target="#user-cover-modal">
               <%= t "change-cover" %>
@@ -16,7 +16,7 @@
         <div class="user-avatar">
           <%= image_tag avatar_user(@user), class: "img-responsive
             img-user-avatar" %>
-          <% if current_user.current_user? @user %>
+          <% if @user.current_user? current_user %>
             <p class="user-avatar-update-text" data-toggle="modal"
               data-target="#user-avatar-modal">
               <%= t "change-avatar" %>
@@ -27,6 +27,11 @@
         <div class="user-full-name">
           <%= @user.name %>
         </div>
+        <% unless @user.current_user? current_user %>
+          <div class="follow-users-btn">
+            <%= render "relationships/follow_form", user: @user %>
+          </div>
+        <% end %>
       </div>
       <div class="menu-group-actions">
         <span>
@@ -51,26 +56,58 @@
               <%= label_tag t("users.email") %> :
               <%= @user.email %>
             </div>
-            <% if current_user.current_user? @user %>
+            <% if @user.current_user? current_user %>
               <%= link_to t("users.change-information"), edit_user_path(@user),
                 remote: true, class: "btn btn-primary" %>
             <% end %>
-            <% if current_user.is_admin? && !current_user.current_user?(@user) %>
+            <% if user_signed_in? && current_user.admin? &&
+              !@user.current_user?(current_user) %>
               <%= link_to t("users.delete"),  @user, method: :delete,
                 data: {confirm: t("you_sure")}, class: "btn btn-danger" %>
             <% end %>
             <div class="clearfix"></div>
           </div>
         </div>
+        <div class="show-follow">
+          <h4>
+            <i class="fa fa-users" aria-hidden="true"></i>
+            <span>
+              <%= t "users.followed" %>
+              <span id="number-following">
+                (<%= @supports.following.count %>)
+              </span>
+            </span>
+          </h4>
+          <hr>
+          <div class="news-feed-left-content" id="following-<%= @user.id %>">
+            <%= render "following", followings: @supports.following,
+              follower: @user %>
+          </div>
+        </div>
+        <div class="show-follow">
+          <h4>
+            <i class="fa fa-users" aria-hidden="true"></i>
+            <span>
+              <%= t "users.followers" %>
+              <span id="number-follower">
+                (<%= @supports.followers.count %>)
+              </span>
+            </span>
+          </h4>
+          <hr>
+          <div class="news-feed-left-content" id="followers-<%= @user.id %>">
+            <%= render "followers", followers: @supports.followers,
+              followed: @user %>
+          </div>
+        </div>
       </div>
     </div>
     <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8 user-show-right
       with-padding">
-      <% if current_user.current_user? @user %>
+      <% if @user.current_user? current_user %>
         <div class="new-image">
           <div class="description-field avatar-small">
-            <%= link_to image_tag(avatar_user(current_user)),
-              user_path(current_user) %>
+            <%= link_to image_tag(avatar_user(@user)), user_path(@user) %>
             <%= text_area :description, t("images.description"),
               class: "form-control", placeholder: t("write-something") %>
           </div>

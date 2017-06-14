@@ -1,0 +1,21 @@
+<div class="follow-users">
+  <span class="follow-users-header-content">
+    <span class="follow-users-image">
+      <%= link_to user do %>
+        <%= image_tag avatar_user(user), class: "img-responsive
+          follow-users-header-avatar" %>
+      <% end %>
+    </span>
+    <div class="follow-users-header-info">
+      <h6><%= link_to user.name, user %></h6>
+      <div><b><% t "users.email" %></b><%= user.email %></div>
+      <% if user_signed_in? && current_user.admin? &&
+        !user.current_user?(current_user) %>
+        <div class="follow-users-btn">
+          <%= link_to t("users.delete"), user, method: :delete,
+            data: {confirm: t("you_sure")}, class: "btn btn-danger" %>
+        </div>
+      <% end %>
+    </div>
+  </span>
+</div>

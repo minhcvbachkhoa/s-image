@@ -6,5 +6,8 @@ Rails.application.routes.draw do
   }
 
   resources :groups
-  resources :users, except: [:new, :create]
+  resources :users, except: [:new, :create] do
+    resources :relationships, only: [:create, :destroy]
+  end
+  resources :relationships, only: :index
 end

@@ -1,0 +1,18 @@
+<div class="follow-users">
+  <span class="follow-users-header-content">
+    <span class="follow-users-image">
+      <%= link_to user do %>
+        <%= image_tag avatar_user(user), class: "img-responsive
+          follow-users-header-avatar" %>
+      <% end %>
+    </span>
+
+    <div class="follow-users-header-info">
+      <h6><%= link_to user.name, user %></h6>
+      <div><b><% t "users.email" %></b><%= user.email %></div>
+      <div class="follow-users-btn">
+        <%= render "follow_form", user: user %>
+      </div>
+    </div>
+  </span>
+</div>

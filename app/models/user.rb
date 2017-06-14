@@ -21,15 +21,30 @@ class User < ApplicationRecord
     length: {within: Devise.password_length}, allow_nil: true
   validates :name, presence: true, length: {maximum: 50}
 
+  enum admin: [:not_admin, :admin]
+
   def is_admin_group? group
     group.admins.include? self
   end
 
-  def is_admin?
-    self.admin
-  end
-
   def current_user? user
     self == user
+  end
+
+  def followed? user
+    following.include? user
+  end
+
+  def follow other_user
+    following << other_user
+    active_relationships.last
+  end
+
+  def unfollow other_user
+    following.delete other_user
+  end
+
+  def user_relationship user
+    active_relationships.find_by followed_id: user.id
   end
 end

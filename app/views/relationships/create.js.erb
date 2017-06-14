@@ -1,0 +1,6 @@
+$('#follow-form-<%= @user.id %>').html(
+  '<%= j render "relationships/unfollow", relationship: @relationship %>');
+$('#number-follower').html('(<%= @user.followers.count %>)');
+$('#followers-<%= @user.id %>').html(
+  '<%= j render "users/followers", followers: @user.followers,
+    followed: @user %>');
