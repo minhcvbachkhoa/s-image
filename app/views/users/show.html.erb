@@ -102,24 +102,21 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8 user-show-right
-      with-padding">
+    <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8 user-show-right">
       <% if @user.current_user? current_user %>
         <div class="new-image">
           <div class="description-field avatar-small">
             <%= link_to image_tag(avatar_user(@user)), user_path(@user) %>
-            <%= text_area :description, t("images.description"),
-              class: "form-control", placeholder: t("write-something") %>
-          </div>
-          <div class="image-file">
-            <%= file_field :image, class: "image-file" %>
-          </div>
-          <div class="actions">
-            <%= submit_tag t("upload-image"), class: "btn btn-primary" %>
+            <%= link_to new_image_path(imageable_id: @user.id,
+              imageable_type: @user.class.name), remote: true do %>
+              <div class="upload-images-content">
+                <%= text_area_tag :search, params[:search],
+                  placeholder: t("images.upload"), class: "form-control" %>
+              </div>
+            <% end %>
           </div>
         </div>
       <% end %>
-      <h3 class="no-content"><%= t :no_content %></h3>
     </div>
     <%= render "cover_form", user: @user %>
     <%= render "avatar_form", user: @user %>
@@ -127,3 +124,4 @@
 </div>
 <div id="edit-user-modal" class="modal fade" role="dialog"></div>
 <div id="new-group-modal" class="modal fade" role="dialog"></div>
+<div id="images-upload-modal" class="modal fade" role="dialog"></div>

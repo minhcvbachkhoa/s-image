@@ -1,0 +1,57 @@
+<div class="modal-dialog images-upload-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">
+        &times;
+      </button>
+      <h4 class="modal-title"><%= t "images.upload" %></h4>
+    </div>
+    <div class="modal-body">
+      <div class="image-form">
+        <%= form_for image, multipart: true, remote: true do |f| %>
+          <div class="image-form-errors">
+            <% if image.errors.any? %>
+              <%= render "shared/error_messages", object: image %>
+            <% end %>
+          </div>
+
+          <div class="image-image">
+            <span>
+              <% if image.id.present? %>
+                <%= image_tag image.image_url,
+                  class: "img-responsive image-panel" %>
+              <% else %>
+                <%= image_tag "", class: "img-responsive image-panel" %>
+              <% end %>
+            </span>
+            <span><%= f.file_field :image, class: "image-file-field" %></span>
+          </div>
+
+          <div class="field">
+            <%= f.label :categoy %>
+            <%= f.select :category_id, categories.collect {|category|
+              [category.name, category.id]}, {}, class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :description %>
+            <%= f.text_area :description,
+              class: "form-control image-description" %>
+          </div>
+          <div class="field">
+            <%= f.hidden_field :imageable_id, value: object.id %>
+            <%= f.hidden_field :imageable_type, value: object.class.name %>
+          </div>
+          <div class="actions">
+            <button type="button" class="btn btn-danger image-btn-cancel"
+              data-dismiss="modal">
+              <%= t "cancel" %>
+            </button>
+            <%= f.submit t("images.upload"), class: "btn btn-primary" %>
+          </div>
+          <div class="clearfix"></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

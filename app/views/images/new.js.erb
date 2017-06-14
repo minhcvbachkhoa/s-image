@@ -1,0 +1,3 @@
+$('#images-upload-modal').html('<%= j render "images/form", image: @image,
+  object: @imageable, categories: @image.categories %>');
+$('#images-upload-modal').modal('show');
