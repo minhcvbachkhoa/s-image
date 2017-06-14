@@ -5,7 +5,7 @@
     <h1><%= t "list-users" %></h1>
     <% if @users %>
       <% @users.each do |user| %>
-          <%= render "user", user: user %>
+        <%= render "user", user: user %>
       <% end %>
     <% else %>
       <h3 ><%= t :no_content %></h3>

@@ -69,6 +69,7 @@ vi:
     update-info: "Chỉnh sửa thông tin"
     delete-group: "Xóa nhóm"
     error: "Lỗi"
+    not-found: "Không tìm thấy nhóm"
   images:
     images: "Ảnh"
     description: "Mô tả về ảnh"
@@ -111,3 +112,7 @@ vi:
               blank: "Tên nhóm không thể để trống"
   list-users: "Danh sách người dùng"
   view-more: "Xem thêm"
+  will_paginate:
+    previous_label: "&#8592; Trước"
+    next_label: "Tiếp &#8594;"
+    page_gap: "&hellip;"

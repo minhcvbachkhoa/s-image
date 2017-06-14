@@ -10,7 +10,7 @@
       <h3 ><%= t :no_content %></h3>
     <% else %>
       <% @relationships.each do |user| %>
-          <%= render "user", user: user %>
+        <%= render "user", user: user %>
       <% end %>
     <% end %>
     <%= will_paginate %>
