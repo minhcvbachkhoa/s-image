@@ -101,6 +101,7 @@ vi:
     images: "Ảnh"
     followed: "Đang theo dõi"
     followers: "Người theo dõi"
+    create-album: "Tạo album"
   error: "lỗi"
   activerecord:
     errors:
@@ -125,8 +126,13 @@ vi:
           attributes:
             image:
               blank: "Ảnh không thể để trống"
+        album:
+          attributes:
+            name:
+              blank: "Tên không thể để trống"
   list-users: "Danh sách người dùng"
   view-more: "Xem thêm"
+  view-less: "Ẩn"
   category: "Thể loại"
   will_paginate:
     previous_label: "&#8592; Trước"
@@ -134,6 +140,9 @@ vi:
     page_gap: "&hellip;"
   datetime:
     distance_in_words:
+      x_days:
+        one: "1 ngày"
+        other: "%{count} ngày"
       about_x_hours:
         one: "1 giờ"
         other: "%{count} giờ"
@@ -142,6 +151,7 @@ vi:
         other: "%{count} phút"
       less_than_x_minutes:
         one: "Vừa xong"
-      x_days:
-        one: "1 ngày"
-        other: "%{count} ngày"
+  album-created: "Tạo album thành công"
+  create-album-error: "Lỗi tạo album"
+  album-not-found: "Không tìm thấy album"
+  set-name-album: "Đặt tên album"

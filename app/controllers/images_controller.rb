@@ -30,6 +30,16 @@ class ImagesController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
+  def update
+    if @image.update_attributes image_params
+      flash[:success] = t "images.success-updated"
+      redirect_to request.referer == root_url ? root_url : @image.object
+    end
+  end
+
   def destroy
     obj = @image.object
     if @image.destroy
