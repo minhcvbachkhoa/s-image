@@ -30,7 +30,7 @@ vi:
   you_sure: "Bạn muốn xóa?"
   change-avatar: "Đổi ảnh đại diện"
   change-cover: "Đổi ảnh bìa"
-  no_content: "Không có hoạt động"
+  no_content: "Không có hiển thị"
   follow: "Theo dõi"
   unfollow: "Bỏ theo dõi"
   signup:
@@ -76,7 +76,7 @@ vi:
     email: "Email"
     password: "Mật khẩu"
     name: "Họ tên"
-    change-information: "Thay đổi thông tin"
+    change-information: "Chỉnh sửa thông tin"
     current-password: "Mật khẩu hiện tại"
     password-confirm: "Xác nhận mật khẩu"
     updated: "Thay đổi thành công"
@@ -87,6 +87,8 @@ vi:
     group-joined: "Nhóm đã tham gia"
     list-albums: "Album ảnh"
     images: "Ảnh"
+    followed: "Đang theo dõi"
+    followers: "Người theo dõi"
   error: "lỗi"
   activerecord:
     errors:
@@ -107,3 +109,5 @@ vi:
           attributes:
             name:
               blank: "Tên nhóm không thể để trống"
+  list-users: "Danh sách người dùng"
+  view-more: "Xem thêm"

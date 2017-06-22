@@ -26,16 +26,12 @@
           </div>
         </li>
         <% if user_signed_in? %>
-          <li><div class="home"><%= link_to t("members"), "#" %></div></li>
+          <li><div class="home"><%= link_to t("members"), users_path %></div></li>
           <li><div class="home"><%= link_to t("albums"), "#" %></div></li>
           <li class="dropdown">
             <%= link_to "#", class: "dropdown-toggle",
               data: {toggle: "dropdown"} do %>
-              <% if current_user.name.length > 15 %>
-                <%= truncate current_user.name, length: 15 %>
-              <% else %>
-                <%= current_user.name %>
-              <% end %>
+              <%= truncate current_user.name, length: Settings.length_name %>
               <b class="caret"></b>
             <% end %>
             <ul class="dropdown-menu">

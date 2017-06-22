@@ -1,0 +1,18 @@
+<% provide :title,
+  @type == "following" ? t("users.followed") : t("users.followers") %>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 middle-follow-users">
+    <%= will_paginate %>
+    <h1>
+      <%= @type == "following" ? t("users.followed") : t("users.followers") %>
+    </h1>
+    <% if @relationships.empty? %>
+      <h3 ><%= t :no_content %></h3>
+    <% else %>
+      <% @relationships.each do |user| %>
+          <%= render "user", user: user %>
+      <% end %>
+    <% end %>
+    <%= will_paginate %>
+  </div>
+</div>

@@ -17,6 +17,9 @@ gem "bootstrap-sass", "3.3.6"
 gem "font-awesome-rails"
 gem "config"
 gem "devise"
+gem "fog", "1.38.0"
+gem "will_paginate", "3.1.0"
+gem "bootstrap-will_paginate", "0.0.10"
 
 group :development, :test do
   gem "byebug", platform: :mri

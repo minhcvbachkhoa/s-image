@@ -1,0 +1,24 @@
+<ul>
+  <% if followings.empty? %>
+    <p class="no-content"><%= t :no_content %></p>
+  <% else %>
+    <% followings.limit(Settings.load_more_user_size).each do |user| %>
+      <%= link_to user do %>
+        <li class="avatar-small">
+          <span>
+            <%= image_tag avatar_user(user), class: "avatar-news-feed-left" %>
+          </span>
+          <span>
+            <%= truncate user.name, length: Settings.length_more_name %>
+          </span>
+        </li>
+      <% end %>
+    <% end %>
+    <% if followings.count > Settings.load_more_user_size %>
+      <div class="users-load-more">
+        <%= link_to t("view-more"),
+          relationships_path(type: "following", user_id: follower.id) %>
+      </div>
+    <% end %>
+  <% end %>
+</ul>
