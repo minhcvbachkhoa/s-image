@@ -19,9 +19,16 @@
         <li><%= link_to t("images.images"), "#" %><br></li>
     </ul>
   </div>
-  <div class="col-md-10 show-follow-images">
-    <div class="cover-group">
-      <%= image_tag cover_group(@group) %>
+  <div class="col-md-10 group-images">
+    <div class="group-cover">
+      <%= image_tag cover_group(@group), class: "img-responsive
+        img-group-cover" %>
+      <% if current_user.is_admin_group? @group %>
+        <div class="group-cover-update-text" data-toggle="modal"
+          data-target="#group-cover-modal">
+          <%= t "change-cover" %>
+        </div>
+      <% end %>
     </div>
     <div class="menu-group-actions">
       <span class="dropdown">
@@ -62,6 +69,7 @@
     </div>
     <h3><%= t "recent-activity" %><h3>
     <div class="recent-activity"></div>
+    <%= render "cover_form", group: @group %>
   </div>
 </div>
 <div id="edit-group-modal" class="modal fade" role="dialog"></div>
