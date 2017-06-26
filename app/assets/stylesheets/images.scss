@@ -65,6 +65,9 @@ $blue1: #365899;
 
     .image-file-field {
       display: inherit;
+      margin-left: -150px;
+      opacity: 0;
+      width: 150px;
     }
   }
 
@@ -199,5 +202,60 @@ $blue1: #365899;
 .group-images {
   .new-image {
     margin-right: 0;
+  }
+}
+
+.icon-image {
+  background-color: $black1;
+  border-radius: 5px;
+  cursor: pointer;
+  float: left;
+  font-size: 16px;
+  font-weight: bold;
+  height: 30px;
+  padding-top: 5px;
+  text-align: center;
+  width: 150px;
+
+  .fa {
+    color: $blue1;
+  }
+}
+
+.album-image {
+  margin-bottom: 10px;
+
+  .image-panel {
+    height: 200px;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .image-file-field {
+    display: inherit;
+    margin-left: -150px;
+    opacity: 0;
+    width: 150px;
+  }
+}
+
+.album-image-form {
+  border: 1px solid $black1;
+  margin: 5px;
+  padding: 0;
+
+  .field {
+    margin-bottom: 0;
+    padding: 0;
+  }
+}
+
+.show-album {
+  .album-name {
+    text-align: center;
+  }
+
+  .images-show {
+    height: 300px;
   }
 }

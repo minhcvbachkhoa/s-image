@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   end
   resources :relationships, only: :index
   resources :images
+  resources :albums
 end

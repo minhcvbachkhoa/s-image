@@ -25,6 +25,10 @@
               <% end %>
             </span>
             <span><%= f.file_field :image, class: "image-file-field" %></span>
+            <span class="icon-image">
+              <i class="fa fa-picture-o" aria-hidden="true"></i>
+              <%= t "images.images" %>
+            </span>
           </div>
 
           <div class="field">
@@ -34,7 +38,7 @@
           </div>
 
           <div class="field">
-            <%= f.label :description %>
+            <%= f.label :description, t("images.description") %>
             <%= f.text_area :description,
               class: "form-control image-description" %>
           </div>
@@ -47,7 +51,7 @@
               data-dismiss="modal">
               <%= t "cancel" %>
             </button>
-            <%= f.submit t("images.upload"), class: "btn btn-primary" %>
+            <%= f.submit yield(:button_text), class: "btn btn-primary" %>
           </div>
           <div class="clearfix"></div>
         <% end %>

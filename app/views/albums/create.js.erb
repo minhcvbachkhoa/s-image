@@ -1,0 +1,4 @@
+<% if @album.errors.any? %>
+  $('.album-form-errors')
+    .html('<%= j render "shared/error_messages", object: @album %>');
+<% end %>
