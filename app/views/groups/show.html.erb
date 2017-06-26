@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
-<div class="container">
-  <div class="col-md-2 show-group">
+<div class="row">
+  <div class="col-md-3 show-group">
     <div class="avatar-small">
       <%= link_to image_tag(avatar_group(@group)), group_path(@group) %>
       <%= link_to @group.name, group_path(@group) %>
     </div>
     <h3>
-      <% if @group.policy_is_public %>
+      <% if @group.is_public? %>
         <i class="fa fa-globe" aria-hidden="true"></i>
         <%= t("groups.is-public") %>
       <% else %>
@@ -18,12 +18,23 @@
         <li><%= link_to t("members"), "#" %></li>
         <li><%= link_to t("images.images"), "#" %><br></li>
     </ul>
+    <% if user_signed_in? %>
+      <h3><%= t "group-joined" %></h3>
+      <div class="list-groups">
+        <% current_user.groups.each do |group| %>
+          <div class="group-avatar-smaller">
+            <%= link_to image_tag(avatar_group(group)), group_path(group) %>
+            <%= link_to group.name, group_path(group) %><br>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
-  <div class="col-md-10 group-images">
+  <div class="col-md-9 group-images">
     <div class="group-cover">
       <%= image_tag cover_group(@group), class: "img-responsive
         img-group-cover" %>
-      <% if current_user.is_admin_group? @group %>
+      <% if user_signed_in? && current_user.is_admin_group?(@group) %>
         <div class="group-cover-update-text" data-toggle="modal"
           data-target="#group-cover-modal">
           <%= t "change-cover" %>
@@ -31,18 +42,22 @@
       <% end %>
     </div>
     <div class="menu-group-actions">
-      <span class="dropdown">
-        <%= link_to "#", class: "dropdown-toggle",
-          data: {toggle: "dropdown"} do %>
-          <%= t "groups.joined" %>
-          <b class="caret"></b>
-        <% end %>
-        <ul class="dropdown-menu">
-          <li><%= link_to t("groups.leave"), "#" %></li>
-        </ul>
-      </span>
+      <% if @group.have_member? current_user %>
+        <span class="dropdown">
+          <%= link_to "#", class: "dropdown-toggle",
+            data: {toggle: "dropdown"} do %>
+            <%= t "groups.joined" %>
+            <b class="caret"></b>
+          <% end %>
+          <ul class="dropdown-menu">
+            <li><%= link_to t("groups.leave"), "#" %></li>
+          </ul>
+        </span>
+      <% else %>
+        <span><%= link_to t("groups.join-group"), "#" %></span>
+      <% end %>
       <span><%= link_to t("groups.add-member"), "#" %></span>
-      <% if current_user.is_admin_group? @group %>
+      <% if user_signed_in? && current_user.is_admin_group?(@group) %>
         <span>
           <%= link_to t("groups.update-info"),
             edit_group_path(@group), remote: true %>
@@ -53,24 +68,38 @@
         </span>
       <% end %>
     </div>
-    <div class="new-image">
-      <div class="description-field avatar-small">
-        <%= link_to image_tag(avatar_user(current_user)),
-          user_path(current_user) %>
-        <%= text_area :description, t("images.description"),
-          class: "form-control", placeholder: t("write-something") %>
+    <% if user_signed_in? && @group.have_member?(current_user) %>
+      <div class="new-image">
+        <div class="description-field avatar-small">
+          <%= link_to image_tag(avatar_user(current_user)),
+            user_path(current_user) %>
+          <%= link_to new_image_path(imageable_id:
+            @supports.group_user(current_user).id,
+            imageable_type: @supports.group_user(current_user).class.name),
+            remote: true do %>
+            <div class="upload-images-content">
+              <%= text_area_tag :search, params[:search],
+                placeholder: t("images.upload"), class: "form-control" %>
+            </div>
+          <% end %>
+        </div>
       </div>
-      <div class="image-file">
-        <%= file_field :image, class: "image-file" %>
+    <% end %>
+    <% if @group.is_public? || @group.have_member?(current_user) %>
+      <h3><%= t "recent-activity" %></h3>
+      <div class="recent-activity">
+        <% unless @supports.images.empty? %>
+          <% @supports.images.each do |image| %>
+            <%= render "images/image", image: image %>
+          <% end %>
+        <% end %>
       </div>
-      <div class="actions">
-        <%= submit_tag t("upload-image"), class: "btn btn-primary" %>
-      </div>
-    </div>
-    <h3><%= t "recent-activity" %><h3>
-    <div class="recent-activity"></div>
+    <% else %>
+      <h3><%= t "groups.join-to-view-activity" %></h3>
+    <% end %>
     <%= render "cover_form", group: @group %>
   </div>
 </div>
 <div id="edit-group-modal" class="modal fade" role="dialog"></div>
 <div id="new-group-modal" class="modal fade" role="dialog"></div>
+<div id="images-upload-modal" class="modal fade" role="dialog"></div>

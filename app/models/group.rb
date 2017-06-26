@@ -10,7 +10,7 @@ class Group < ApplicationRecord
 
   enum policy: [:is_public, :is_private]
 
-  def policy_is_public
-    self.policy == "is_public"
+  def have_member? user
+    users.include? user
   end
 end

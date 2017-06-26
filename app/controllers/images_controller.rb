@@ -34,7 +34,7 @@ class ImagesController < ApplicationController
     obj = @image.object
     if @image.destroy
       flash[:success] = t "images.success-deleted"
-      redirect_to obj
+      redirect_to request.referer == root_url ? root_url : obj
     end
   end
 
