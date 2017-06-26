@@ -1,0 +1,65 @@
+<div class="images">
+  <div class="images-header">
+    <span class="images-header-content">
+      <span class="images-image">
+        <%= link_to image.user do %>
+          <%= image_tag avatar_user(image.user), class: "img-responsive
+            images-header-avatar" %>
+        <% end %>
+      </span>
+
+      <div class="images-header-info">
+        <h6><%= link_to image.user.name, image.user %>
+          <span class="image-post-title">
+            <%= t "images.uploaded-a-image" %>
+          </span>
+        </h6>
+        <small><%= time_ago_in_words image.created_at %></small>
+        <span class="dropdown header-item images-header-icon">
+          <%= link_to "#", class: "dropdown-toggle",
+              data: {toggle: "dropdown"} do %>
+            <%= image_tag "arrow.png", class: "icon" %>
+          <% end %>
+          <% if image.user.current_user? current_user %>
+            <ul class="dropdown-menu">
+              <%= link_to edit_image_path(image), remote: true do %>
+                <li>
+                  <span>
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  </span>
+                  <span><%= t "images.edit" %></span>
+                </li>
+              <% end %>
+              <%= link_to image_path(image), method: :delete,
+                data: {confirm: t("you_sure")} do %>
+                <li>
+                  <span>
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </span>
+                  <span><%= t "images.delete" %></span>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        </span>
+      </div>
+    </span>
+  </div>
+
+  <div class="images-body">
+    <div class="images-body-description">
+      <%= image.description %>
+    </div>
+
+    <div class="images-body-category">
+      <span><b><%= t "category" %> : </b></span>
+      <%= link_to image.category.name, "#" %>
+    </div>
+    <div class="images-body-image" data-toggle="modal"
+      data-target="#images-modal-<%= image.id %>">
+      <%= image_tag image.image.url, class: "img-responsive images-show" %>
+    </div>
+    <hr>
+  </div>
+  <%= render "images/image_modal", image: image %>
+</div>

@@ -10,4 +10,5 @@ Rails.application.routes.draw do
     resources :relationships, only: [:create, :destroy]
   end
   resources :relationships, only: :index
+  resources :images
 end

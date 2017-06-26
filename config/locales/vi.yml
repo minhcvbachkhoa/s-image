@@ -70,9 +70,20 @@ vi:
     delete-group: "Xóa nhóm"
     error: "Lỗi"
     not-found: "Không tìm thấy nhóm"
+    join-group: "Tham gia nhóm"
+    join-to-view-activity: "Tham gia để xem hoạt động của nhóm"
   images:
     images: "Ảnh"
     description: "Mô tả về ảnh"
+    upload: "Đăng ảnh"
+    success-uploaded: "Đăng ảnh thành công"
+    upload-error: "Lỗi đăng ảnh"
+    success-updated: "Cập nhật thành công"
+    success-deleted: "Xóa ảnh thành công"
+    not-found: "Không tìm thấy ảnh"
+    uploaded-a-image: "đã đăng một ảnh"
+    edit: "Chỉnh sửa"
+    delete: "Xóa ảnh"
   users:
     email: "Email"
     password: "Mật khẩu"
@@ -110,9 +121,27 @@ vi:
           attributes:
             name:
               blank: "Tên nhóm không thể để trống"
+        image:
+          attributes:
+            image:
+              blank: "Ảnh không thể để trống"
   list-users: "Danh sách người dùng"
   view-more: "Xem thêm"
+  category: "Thể loại"
   will_paginate:
     previous_label: "&#8592; Trước"
     next_label: "Tiếp &#8594;"
     page_gap: "&hellip;"
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: "1 giờ"
+        other: "%{count} giờ"
+      x_minutes:
+        one: "1 phút"
+        other: "%{count} phút"
+      less_than_x_minutes:
+        one: "Vừa xong"
+      x_days:
+        one: "1 ngày"
+        other: "%{count} ngày"
