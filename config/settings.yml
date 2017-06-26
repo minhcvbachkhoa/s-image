@@ -3,8 +3,8 @@ attrs: ["avatar", "cover"]
 classes: ["User", "GroupUser", "Album"]
 load_more_user_size: 4
 load_more_image_size: 4
-load_more_comment_size: 2
-load_more_reply_comment_size: 2
+load_more_comment_size: 3
+load_more_reply_comment_size: 3
 length_more_user: 4
 length_name: 15
 length_more_name: 30

@@ -7,4 +7,8 @@ class Comment < ApplicationRecord
   validates :user, presence: true
   validates :image, presence: true
   validates :content, presence: true
+
+  scope :show_more_comment, (->offset do
+    where("id < ?", offset).limit Settings.load_more_comment_size
+  end)
 end

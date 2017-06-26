@@ -1,0 +1,45 @@
+<div class="comments">
+  <div class="comments-header">
+    <span class="comments-header-content">
+      <span class="comments-image">
+        <%= link_to comment.user do %>
+          <%= image_tag avatar_user(comment.user), class: "img-responsive
+            comments-header-avatar" %>
+        <% end %>
+      </span>
+
+      <div class="comments-header-info">
+        <h6><%= link_to comment.user.name, comment.user %></h6>
+        <span><%= comment.content %></span>
+
+        <div class="comment-info-action">
+          <% if comment.user.current_user? current_user %>
+            <span class="comment-btn-action">
+              <%= link_to t("delete"), image_comment_path(comment.image,
+                comment), method: :delete, remote: true,
+                data:{confirm: t("you_sure")} %>
+            </span>
+            <span>-</span>
+            <span class="comment-btn-action comment-edit-btn"
+              id="<%= comment.id %>">
+              <%= t "comments.edit" %>
+            </span>
+            <span>-</span>
+          <% end %>
+          <span
+            class="reply-comments-action <%= comment.id %> comment-btn-action">
+            <%= link_to t("comments.reply"), "#", remote: true %>
+          </span>
+          <span>-</span>
+            <% if comment.created_at != comment.updated_at %>
+              <span><%= time_ago_in_words comment.created_at %></span>
+              <span>-</span>
+              <span><%= t "comments.changed" %></span>
+            <% else %>
+              <span><%= time_ago_in_words comment.created_at %></span>
+            <% end %>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>

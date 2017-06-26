@@ -33,6 +33,10 @@ class Image < ApplicationRecord
     Category.all
   end
 
+  def main_comments
+    comments.where(parent_id: nil).order id: :desc
+  end
+
   private
   Settings.classes.each do |subj|
     define_method("imageable_is_#{subj.tableize}?") do

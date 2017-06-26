@@ -1,0 +1,122 @@
+$blue: #00f;
+$black: #000;
+$black1: rgba(0, 0, 0, .1);
+$color1: #365899;
+
+.comments {
+  margin-bottom: 10px;
+
+  .comments-header {
+    margin-bottom: 10px;
+  }
+}
+
+.comments-header-content {
+  .comments-header-avatar {
+    border: 1px solid $black1;
+    display: block;
+    float: left;
+    height: 40px;
+    margin-right: 5px;
+    width: 40px;
+  }
+
+  .avatar-reply-comment {
+    height: 30px;
+    width: 30px;
+  }
+
+  .comments-header-info {
+    overflow: hidden;
+    position: relative;
+
+    h6 {
+      color: $color1;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 0 !important;
+      margin-top: 0 !important;
+    }
+
+    .comments-header-user {
+      width: 100%;
+    }
+
+    .comment-info-action {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+
+.comment-btn-action {
+  color: $blue;
+  cursor: pointer;
+
+  &:hover {
+    color: $black;
+  }
+
+  a {
+    color: $blue;
+
+    &:hover {
+      color: $black;
+    }
+  }
+}
+
+.image-comment-edit-form {
+  display: block;
+
+  .img-avatar-comment {
+    border: 1px solid $black1;
+    display: block;
+    float: left;
+    height: 30px !important;
+    margin-right: 10px;
+    width: 30px !important;
+  }
+
+  .comment-form-content {
+    height: 30px !important;
+    overflow: hidden;
+    width: 90%;
+  }
+}
+
+.images-comments {
+  margin-right: 10px;
+
+  .images-comment-icon {
+    height: 30px;
+    width: 30px;
+  }
+
+  .image-comment-edit-form {
+    display: none;
+
+    .comment-edit-btn-cancel {
+      color: $blue;
+    }
+  }
+}
+
+.image-comment-form {
+  display: block;
+
+  .img-avatar-comment {
+    border: 1px solid $black1;
+    display: block;
+    float: left;
+    height: 40px !important;
+    margin-right: 10px;
+    width: 40px !important;
+  }
+
+  .comment-form-content {
+    height: 40px !important;
+    overflow: hidden;
+    width: 90%;
+  }
+}

@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     resources :relationships, only: [:create, :destroy]
   end
   resources :relationships, only: :index
-  resources :images
+  resources :images do
+    resources :comments, except: :show
+  end
   resources :albums
+  resources :comments, only: :index
 end
