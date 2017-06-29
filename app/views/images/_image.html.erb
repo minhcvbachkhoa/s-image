@@ -65,7 +65,7 @@
     <span class="images-comments">
       <%= image_tag "comment.png", class: "images-comment-icon" %>
       <span id="comment-size-<%= image.id %>">
-        <%= image.main_comments.size %>
+        <%= image.comments.hash_tree(limit_depth: Settings.limit_depth).size %>
       </span>
       <%= t "comments.comment" %>
     </span>
@@ -78,22 +78,27 @@
       <%= f.text_field :content, placeholder: t("write-something"),
         class: "form-control comment-form-content",
         id: "image-comment-form-content-#{image.id}" %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :image_id, value: image.id %>
     <% end %>
     <hr>
   </div>
-
+  <% offset = 0 %>
   <div class="images-comments" id="images-comments-<%= image.id %>">
-    <% image_comments = image.main_comments.offset(0)
-      .limit Settings.load_more_comment_size %>
-    <% image_comments.each do |comment| %>
+    <% image_comments = image.comments
+      .hash_tree(limit_depth: Settings.limit_depth)
+      .take Settings.load_more_comment_size %>
+    <% image_comments.each do |comment, nested_comments| %>
       <%= render "comments/comment", comment: comment %>
-      <%= render "comments/edit_form", image: image, comment: comment %>
+      <%= render "comments/edit_form", comment: comment %>
+      <% offset = comment.id %>
     <% end %>
   </div>
   <div id="load-more-image-comments-<%= image.id %>">
-    <% if image.main_comments.size > image_comments.size %>
-      <%= link_to t("view-more"), image_comments_path(image,
-        comment_offset: image_comments.last.id), remote: true %>
+    <% if image.comments.hash_tree(limit_depth: Settings.limit_depth).size >
+      image_comments.size %>
+      <%= link_to t("view-more"), image_comments_path(image, offset: offset),
+        remote: true %>
     <% end %>
   </div>
   <%= render "images/image_modal", image: image %>

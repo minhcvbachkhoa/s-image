@@ -1,0 +1,6 @@
+$('#reply-reply-comments-<%= @comment.parent.id %>').hide();
+$('#reply-comment-form-<%= @comment.parent.id %>').show();
+$('#reply-comment-form-<%= @comment.parent.id %>')
+  .html('<%= j render "form", comment: @comment.parent,
+    reply_comment: @comment %>');
+$('#reply-comment-form-content-<%= @comment.parent.id %>').focus();

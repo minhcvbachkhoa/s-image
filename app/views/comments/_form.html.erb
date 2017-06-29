@@ -1,0 +1,15 @@
+<div class="image-comment-form">
+  <%= form_for [comment.image, reply_comment], method: :post,
+    url: image_comments_path(comment.image, reply_comment),
+    remote: true do |f| %>
+    <%= image_tag avatar_user(current_user),
+      class: "img-responsive img-avatar-comment" %>
+    <%= f.text_field :content, placeholder: t("write-something"),
+      class: "form-control comment-form-content",
+      id: "reply-comment-form-content-#{comment.id}" %>
+    <%= f.hidden_field :parent_id, value: comment.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :image_id, value: comment.image.id %>
+  <% end %>
+  <hr>
+</div>

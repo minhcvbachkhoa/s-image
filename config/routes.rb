@@ -14,5 +14,4 @@ Rails.application.routes.draw do
     resources :comments, except: :show
   end
   resources :albums
-  resources :comments, only: :index
 end

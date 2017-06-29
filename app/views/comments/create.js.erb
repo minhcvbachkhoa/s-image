@@ -1,9 +1,16 @@
-<% if @success %>
-  $('#images-comments-<%= @image.id %>')
-    .prepend('<%= j render "comments/edit_form", comment: @comment %>');
-  $('#images-comments-<%= @image.id %>')
+<% if @comment.parent_id.present? %>
+  $('#reply-comments-<%= @comment.parent.id %>').prepend(
+    '<%= j render "edit_form", comment: @comment %>');
+  $('#reply-comment-form-content-<%= @comment.parent.id %>').val('');
+  $('#reply-comments-<%= @comment.parent.id %>').prepend(
+    '<%= j render "comment", comment: @comment %>');
+<% else %>
+    $('#images-comments-<%= @comment.image.id %>')
+  .prepend('<%= j render "comments/edit_form", comment: @comment %>');
+  $('#images-comments-<%= @comment.image.id %>')
     .prepend('<%= j render "comment", comment: @comment %>');
-  $('#image-comment-form-content-<%= @image.id %>').val('');
-  var size = <%= @image.main_comments.size.to_s %>
-  $('#comment-size-<%= @image.id %>').text(size);
+  $('#image-comment-form-content-<%= @comment.image.id %>').val('');
+  var size = <%= @comment.image.comments
+    .hash_tree(limit_depth: Settings.limit_depth).size.to_s %>
+  $('#comment-size-<%= @comment.image.id %>').text(size);
 <% end %>
