@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :group_users, dependent: :destroy
   has_many :groups, through: :group_users
   has_many :images, as: :imageable, dependent: :destroy
-  has_many :likes, as: :likeable, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many :active_relationships, class_name: Relationship.name,
     foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name: Relationship.name,
@@ -22,6 +22,9 @@ class User < ApplicationRecord
   validates :name, presence: true, length: {maximum: 50}
 
   enum admin: [:not_admin, :admin]
+
+  mount_uploader :avatar, ImageUploader
+  mount_uploader :cover, ImageUploader
 
   def is_admin_group? group
     group.admins.include? self
@@ -46,5 +49,13 @@ class User < ApplicationRecord
 
   def user_relationship user
     active_relationships.find_by followed_id: user.id
+  end
+
+  def bookmarks
+    likes.where likeable_type: "Bookmark"
+  end
+
+  def bookmark image
+    bookmarks.where(likeable_id: image.id).first
   end
 end

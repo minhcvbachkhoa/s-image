@@ -36,7 +36,8 @@
               <li><%= link_to t("profile"), user_path(current_user) %></li>
               <li><%= link_to t("new-group"), new_group_path, remote: true %></li>
               <li><%= link_to t("new-album"), new_album_path, remote: true %></li>
-              <li><%= link_to t("liked"), "#" %></li>
+              <li><%= link_to t("images.bookmarked"),
+                user_bookmarks_path(current_user) %></li>
               <li class="divider"></li>
               <li>
                 <%= link_to t("log-out"), destroy_user_session_path, method: :delete %>

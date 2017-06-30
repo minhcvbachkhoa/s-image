@@ -133,7 +133,7 @@ $blue1: #365899;
   }
 
   .dropdown-menu {
-    min-width: 145px;
+    min-width: 140px;
 
     a:hover {
       cursor: auto;
@@ -257,5 +257,14 @@ $blue1: #365899;
 
   .images-show {
     height: 300px;
+  }
+}
+
+.index-bookmarked-images {
+  margin-top: -15px;
+
+  .images {
+    margin: 10px;
+    padding: 15px;
   }
 }

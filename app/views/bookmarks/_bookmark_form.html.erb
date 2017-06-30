@@ -1,0 +1,7 @@
+<% bookmark = current_user.bookmark image %>
+<% if user_signed_in? && bookmark.present? %>
+  <%= render "bookmarks/unbookmark", image: image,
+    bookmark: bookmark %>
+<% else %>
+  <%= render "bookmarks/bookmark", image: image %>
+<% end %>

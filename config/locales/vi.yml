@@ -84,6 +84,7 @@ vi:
     uploaded-a-image: "đã đăng một ảnh"
     edit: "Chỉnh sửa"
     delete: "Xóa ảnh"
+    bookmarked: "Ảnh đã đánh dấu"
   users:
     email: "Email"
     password: "Mật khẩu"
@@ -102,6 +103,7 @@ vi:
     followed: "Đang theo dõi"
     followers: "Người theo dõi"
     create-album: "Tạo album"
+    bookmark-error: "Lỗi bookmark"
   error: "lỗi"
   activerecord:
     errors:
@@ -163,3 +165,7 @@ vi:
     edit: "Chỉnh sửa"
     comment-error: "Xảy ra lỗi khi bình luận"
     changed: "Đã chỉnh sửa"
+  like: "Thích"
+  unlike: "Bỏ thích"
+  bookmark: "Đánh dấu"
+  unbookmark: "Bỏ đánh dấu"
