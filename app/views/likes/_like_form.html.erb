@@ -1,0 +1,6 @@
+<% like = current_user.liked object %>
+<% if like.present? %>
+  <%= render "likes/unlike", object: object, like: like %>
+<% else %>
+  <%= render "likes/like", object: object %>
+<% end %>

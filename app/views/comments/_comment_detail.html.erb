@@ -11,22 +11,14 @@
       <div class="comments-header-info">
         <h6><%= link_to comment.user.name, comment.user %></h6>
         <span><%= comment.content %></span>
-
         <div class="comment-info-action">
-          <% if comment.user.current_user? current_user %>
-            <span class="comment-btn-action">
-              <%= link_to t("delete"), image_comment_path(comment.image,
-                comment), method: :delete, remote: true,
-                data:{confirm: t("you_sure")} %>
-            </span>
-            <span>-</span>
-            <span class="comment-btn-action comment-edit-btn"
-              id="<%= comment.id %>">
-              <%= t "comments.edit" %>
+          <% if user_signed_in? %>
+            <span class="comments-like" id="comment-like-<%= comment.id %>">
+              <%= render "likes/like_form", object: comment %>
             </span>
             <span>-</span>
           <% end %>
-          <% if comment.depth < Settings.limit_depth - 1 %>
+          <% if user_signed_in? && comment.depth < Settings.limit_depth - 1 %>
             <span
               class="reply-comments-action <%= comment.id %> comment-btn-action">
               <%= link_to t("comments.reply"),
@@ -35,6 +27,26 @@
             </span>
             <span>-</span>
           <% end %>
+          <% if comment.user.current_user? current_user %>
+            <span class="comment-btn-action comment-edit-btn"
+              id="<%= comment.id %>">
+              <%= t "comments.edit" %>
+            </span>
+            <span>-</span>
+            <span class="comment-btn-action">
+              <%= link_to t("delete"), image_comment_path(comment.image,
+              comment), method: :delete, remote: true,
+              data:{confirm: t("you_sure")} %>
+            </span>
+          <% end %>
+          <span>
+            <i class="fa fa-thumbs-up like-icon" aria-hidden="true"></i>
+          </span>
+          <span class="comments-like"
+            id="number-like-comment-<%= comment.id %>">
+            <%= comment.likes.size %>
+          </span>
+          <span>-</span>
           <% if comment.created_at != comment.updated_at %>
             <span><%= time_ago_in_words comment.created_at %></span>
             <span>-</span>

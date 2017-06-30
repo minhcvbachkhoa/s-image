@@ -15,38 +15,40 @@
           </span>
         </h6>
         <small><%= time_ago_in_words image.created_at %></small>
-        <span class="dropdown header-item images-header-icon">
-          <%= link_to "#", class: "dropdown-toggle",
-              data: {toggle: "dropdown"} do %>
-            <%= image_tag "arrow.png", class: "icon" %>
-          <% end %>
-          <ul class="dropdown-menu">
-            <% if image.user.current_user? current_user %>
-              <%= link_to edit_image_path(image), remote: true do %>
-                <li>
-                  <span>
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                  </span>
-                  <span><%= t "images.edit" %></span>
-                </li>
-              <% end %>
-              <%= link_to image_path(image), method: :delete,
-                data: {confirm: t("you_sure")} do %>
-                <li>
-                  <span>
-                    <i class="fa fa-times" aria-hidden="true"></i>
-                  </span>
-                  <span><%= t "images.delete" %></span>
-                </li>
-              <% end %>
+        <% if user_signed_in? %>
+          <span class="dropdown header-item images-header-icon">
+            <%= link_to "#", class: "dropdown-toggle",
+                data: {toggle: "dropdown"} do %>
+              <%= image_tag "arrow.png", class: "icon" %>
             <% end %>
-            <% unless image.user.current_user? current_user %>
-              <span id="image-bookmark-<%= image.id %>">
-                <%= render "bookmarks/bookmark_form", image: image %>
-              </span>
-            <% end %>
-          </ul>
-        </span>
+            <ul class="dropdown-menu">
+              <% if image.user.current_user? current_user %>
+                <%= link_to edit_image_path(image), remote: true do %>
+                  <li>
+                    <span>
+                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </span>
+                    <span><%= t "images.edit" %></span>
+                  </li>
+                <% end %>
+                <%= link_to image_path(image), method: :delete,
+                  data: {confirm: t("you_sure")} do %>
+                  <li>
+                    <span>
+                      <i class="fa fa-times" aria-hidden="true"></i>
+                    </span>
+                    <span><%= t "images.delete" %></span>
+                  </li>
+                <% end %>
+              <% end %>
+              <% unless image.user.current_user? current_user %>
+                <span id="image-bookmark-<%= image.id %>">
+                  <%= render "bookmarks/bookmark_form", image: image %>
+                </span>
+              <% end %>
+            </ul>
+          </span>
+        <% end %>
       </div>
     </span>
   </div>
@@ -67,6 +69,18 @@
     <hr>
   </div>
   <div class="images-footer">
+    <% if user_signed_in? %>
+      <span class="images-like" id="image-like-<%= image.id %>">
+        <%= render "likes/like_form", object: image %>
+      </span>
+    <% end %>
+    <span>
+      <i class="fa fa-thumbs-up like-icon" aria-hidden="true"></i>
+    </span>
+    <span class="images-like"
+      id="number-like-image-<%= image.id %>">
+      <%= image.likes.size %>
+    </span>
     <span class="images-comments">
       <%= image_tag "comment.png", class: "images-comment-icon" %>
       <span id="comment-size-<%= image.id %>">
@@ -76,18 +90,20 @@
     </span>
     <hr>
   </div>
-  <div class="image-comment-form">
-    <%= form_for [image, Comment.new], remote: true do |f| %>
-      <%= image_tag avatar_user(current_user),
-        class: "img-responsive img-avatar-comment" %>
-      <%= f.text_field :content, placeholder: t("write-something"),
-        class: "form-control comment-form-content",
-        id: "image-comment-form-content-#{image.id}" %>
-      <%= f.hidden_field :user_id, value: current_user.id %>
-      <%= f.hidden_field :image_id, value: image.id %>
-    <% end %>
-    <hr>
-  </div>
+  <% if user_signed_in? %>
+    <div class="image-comment-form">
+      <%= form_for [image, Comment.new], remote: true do |f| %>
+        <%= image_tag avatar_user(current_user),
+          class: "img-responsive img-avatar-comment" %>
+        <%= f.text_field :content, placeholder: t("write-something"),
+          class: "form-control comment-form-content",
+          id: "image-comment-form-content-#{image.id}" %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :image_id, value: image.id %>
+      <% end %>
+      <hr>
+    </div>
+  <% end %>
   <% offset = 0 %>
   <div class="images-comments" id="images-comments-<%= image.id %>">
     <% image_comments = image.comments

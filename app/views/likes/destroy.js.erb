@@ -1,0 +1,6 @@
+<% unless @like.errors.any? %>
+  $('#<%= @object.class.name.underscore %>-like-<%= @object.id %>')
+    .html('<%= j render "like", object: @object %>');
+  $('#number-like-<%= @object.class.name.underscore %>-<%= @object.id %>')
+    .html('<%= @object.likes.size %>');
+<% end %>

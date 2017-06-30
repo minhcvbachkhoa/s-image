@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   resources :images do
     resources :comments, except: :show
     resources :bookmarks, only: [:create, :destroy]
+    resources :likes, only: [:create, :destroy]
   end
   resources :albums
+  resources :comments do
+    resources :likes, only: [:create, :destroy]
+  end
 end

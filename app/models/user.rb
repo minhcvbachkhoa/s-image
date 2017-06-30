@@ -58,4 +58,8 @@ class User < ApplicationRecord
   def bookmark image
     bookmarks.where(likeable_id: image.id).first
   end
+
+  def liked likeable
+    likes.find_by likeable: likeable
+  end
 end
