@@ -14,6 +14,10 @@ class User < ApplicationRecord
     foreign_key: "followed_id", dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :active_notifications, class_name: Notification.name,
+    foreign_key: "owner_id", dependent: :destroy
+  has_many :passive_notifications, class_name: Notification.name,
+    foreign_key: "recipient_id", dependent: :destroy
 
   validates :email, presence: true, length: {maximum: 255},
     format: {with: Devise.email_regexp}, uniqueness: {case_sensitive: false}
@@ -61,5 +65,9 @@ class User < ApplicationRecord
 
   def liked likeable
     likes.find_by likeable: likeable
+  end
+
+  def unread_notifications
+    self.passive_notifications.where read: false
   end
 end

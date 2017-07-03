@@ -15,7 +15,8 @@
       <% end %>
     </h3>
     <ul class="list-actions">
-        <li><%= link_to t("members"), "#" %></li>
+        <li><%= link_to t("members"), group_group_users_path(@group),
+          remote: true %></li>
         <li><%= link_to t("images.images"), group_path(@group) %><br></li>
     </ul>
     <% if user_signed_in? %>
@@ -50,13 +51,16 @@
             <b class="caret"></b>
           <% end %>
           <ul class="dropdown-menu">
-            <li><%= link_to t("groups.leave"), "#" %></li>
+            <li><%= link_to t("groups.leave"), group_group_user_path(@group,
+              @supports.group_user(current_user)) %></li>
           </ul>
         </span>
       <% else %>
-        <span><%= link_to t("groups.join-group"), "#" %></span>
+        <span><%= link_to t("groups.join-group"),
+          new_group_group_user_path(@group), remote: true %></span>
       <% end %>
-      <span><%= link_to t("groups.add-member"), "#" %></span>
+      <span><%= link_to t("groups.add-member"),
+        new_group_group_user_path(@group), remote: true %></span>
       <% if user_signed_in? && current_user.is_admin_group?(@group) %>
         <span class="dropdown">
           <%= link_to "#", class: "dropdown-toggle",
@@ -111,3 +115,5 @@
 </div>
 <div id="edit-group-modal" class="modal fade" role="dialog"></div>
 <div id="images-upload-modal" class="modal fade" role="dialog"></div>
+<div id="add-members-modal" class="modal fade" role="dialog"></div>
+<div id="members-modal" class="modal fade" role="dialog"></div>

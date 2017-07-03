@@ -1,0 +1,15 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">
+        &times;
+      </button>
+    </div>
+    <div class="modal-body">
+      <% users.each do |user| %>
+        <%= user.email %>
+        <br>
+      <% end %>
+    </div>
+  </div>
+</div>

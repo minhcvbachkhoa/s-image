@@ -1,0 +1,58 @@
+var channel = "NotificationChannel";
+var notifications = [];
+
+App.notification = App.cable.subscriptions.create({
+  channel: channel}, {
+  received: function(data) {
+    if (data.notification !== undefined) {
+      notification = data.notification;
+      notifications.push(notification);
+      var owner = data.owner;
+      var recipient = data.recipient;
+      var group = data.group
+
+      var html = convertNotification(owner, recipient, group);
+
+      $('.notification-count').show();
+      $('.notification-count')[0].innerText = notifications.length.toString();
+
+      $('.noti-list').prepend(html);
+    }
+  },
+
+  speak: function(data) {
+    this.perform('speak', data);
+  }
+});
+
+function convertNotification(owner, recipient, group) {
+  var str;
+  if (owner.id == recipient.id) {
+    str = owner.name + " want to join group " + group.name;
+  } else {
+    str = owner.name + " has invited you to join to group " + group.name;
+  }
+  html = "<li><a href='" + window.location.origin + '/groups/' + group.id
+    + "'>" + str + "</a></li>";
+  return html;
+}
+
+document.addEventListener("turbolinks:load", function() {
+  var notificationCount = $('.notification-count')[0].innerText
+    .replace(/\s/g, '');
+  if(notificationCount == '0') {
+    $('.notification-count').hide();
+  } else {
+    $('.notification-count').show();
+  }
+
+  if($('.notifications').length) {
+    $('.notifications').hide();
+  }
+
+  $('.notification-icon').on('click', function() {
+    $('.notification-count').hide();
+    $('.notifications').toggle();
+      App.notification.speak({action_type: "read_all_notification"});
+  });
+});
