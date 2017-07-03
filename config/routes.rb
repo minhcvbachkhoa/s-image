@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     registrations: "registrations"
   }
 
-  resources :groups
+  resources :groups do
+    resources :group_users
+  end
   resources :users, except: [:new, :create] do
     resources :relationships, only: [:create, :destroy]
     resources :bookmarks, only: :index

@@ -14,4 +14,15 @@ module ApplicationHelper
       end
     end
   end
+
+  def convert_notification notification
+    owner = notification.owner
+    recipient = notification.recipient
+    group = notification.group
+    if owner == recipient
+      "#{owner.name} want to join group #{group.name}"
+    else
+      "#{owner.name} has invited you to join to group #{group.name}"
+    end
+  end
 end

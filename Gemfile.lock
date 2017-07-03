@@ -350,6 +350,7 @@ GEM
       json (>= 1.8)
       nokogiri (~> 1.5)
       trollop (~> 2.1)
+    redis (3.3.3)
     reek (4.6.2)
       codeclimate-engine-rb (~> 0.4.0)
       parser (>= 2.4.0.0, < 2.5)
@@ -486,6 +487,7 @@ DEPENDENCIES
   rails (~> 5.0.3)
   rails-controller-testing
   rails_best_practices
+  redis
   reek
   rspec-activemodel-mocks
   rspec-collection_matchers

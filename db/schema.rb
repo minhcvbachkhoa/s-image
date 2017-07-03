@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170626151907) do
+ActiveRecord::Schema.define(version: 20170703144657) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "name"
@@ -78,6 +78,15 @@ ActiveRecord::Schema.define(version: 20170626151907) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable_type_and_likeable_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "recipient_id"
+    t.integer  "owner_id"
+    t.integer  "group_id"
+    t.boolean  "read",         default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "relationships", force: :cascade do |t|

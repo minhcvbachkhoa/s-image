@@ -1,0 +1,22 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">
+        &times;
+      </button>
+    </div>
+    <div class="modal-body">
+      <%= form_for group, url: group_group_users_path(group), method: :post,
+        remote: true, multipart: true do |f| %>
+        <% users.each do |user| %>
+          <%= f.label :ids do %>
+            <%= check_box_tag "group_users[ids][]", user.id %>
+            <span><%= user.email %></span>
+          <% end %>
+        <% end %>
+        <hr>
+        <%= f.submit "Them", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
